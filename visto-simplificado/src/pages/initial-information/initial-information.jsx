@@ -2,46 +2,31 @@ import React, { useEffect, useState } from "react"
 import './initial-information.css'
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { Checkbox, FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import FormGroup from '@mui/material/FormGroup';
+import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import statesBrazilianService from "../../service/statesBrazilianService";
 
 
 const InitialInformation = () => {
-
-    const getStates = async () =>{
-        debugger
+    const getStates = async () =>{        
         const response = await statesBrazilianService.getStates();
         setStates(response);        
     }
 
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState("");
+    const [radioRequester, setRadioRequester] = useState("");
 
     const handleChangeSelect = (event) => {
         setSelectedState(event.target.value);
     };
 
-    const [state, setState] = useState({
-        gilad: true,
-        jason: false,
-        antoine: false,
-      });
-
-
-    const handleChangeCheck = (event) => {
-        setState({
-          ...state,
-          [event.target.name]: event.target.checked,
-        });
-      };
-
-      const { gilad, jason, antoine } = state;  
-
-
-      useEffect(() => {
+    const handleChangeRequester = (event) => {
+        setRadioRequester(event.target.value);
+    };
+    
+    useEffect(() => {
         getStates();
-      }, []);
+    }, []);
 
   return (
     <div className='div-flex'>
@@ -71,7 +56,7 @@ const InitialInformation = () => {
                         onChange={handleChangeSelect}
                         >
                             {states.map((state) => (
-                            <MenuItem key={state.id} value={state.id}>
+                            <MenuItem key={state.id} value={state.nome}>
                                 {state.nome}
                             </MenuItem>
                             ))}
@@ -90,10 +75,12 @@ const InitialInformation = () => {
                                 defaultValue="female"
                                 name="radio-buttons-group"
                                 className="subTitle-div-2"
+                                value={radioRequester}
+                                onChange={handleChangeRequester}
                             >
-                                <FormControlLabel value="female" control={<Radio />} label="Sim, sou solicitante principal" />
-                                <FormControlLabel value="male" control={<Radio />} label="Não sou o solicidade principal" />
-                                <FormControlLabel value="other" control={<Radio />} label="Estou realizando o meu visto sozinho" />
+                                <FormControlLabel value="Sim, sou solicitante principal" control={<Radio />} label="Sim, sou solicitante principal" />
+                                <FormControlLabel value="Não sou o solicidade principal" control={<Radio />} label="Não sou o solicidade principal" />
+                                <FormControlLabel value="Estou realizando o meu visto sozinho" control={<Radio />} label="Estou realizando o meu visto sozinho" />
                             </RadioGroup>
                         </div>
                     </div>
