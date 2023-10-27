@@ -6,7 +6,7 @@ import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import statesBrazilianService from "../../service/statesBrazilianService";
 
 
-const InitialInformation = () => {
+function InitialInformation () {
     const getStates = async () =>{        
         const response = await statesBrazilianService.getStates();
         setStates(response);        
@@ -91,6 +91,12 @@ const InitialInformation = () => {
                 <span>* Deve haver apenas um solicitante principal por família.</span><br/>
                 <span>* Caso já tenha selecionado um solicitante principal em outro formulário, selecione <b>NÃO SOU O SOLICITANTE PRINCIPAL</b> para este formulário</span>
             </div>
+
+            <div className='padding-top'>
+                <button type='button' className='button-style' >
+                    <span className='font-button'>Próxima</span>
+                </button>
+          </div>
         </div>
     </div>
   )

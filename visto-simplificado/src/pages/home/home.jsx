@@ -4,6 +4,7 @@ import imageHome2 from '../../assets/imagem-2.png';
 import imageHome3 from '../../assets/imagem-3.png';
 import imageHome4 from '../../assets/imagem-4.png';
 import imageHome5 from '../../assets/imagem-5.png';
+import { Link } from 'react-router-dom';
 
 function Home() {
 
@@ -24,16 +25,18 @@ function Home() {
             </span>
           </div>
           <div className='padding-top'>
-            <button type='button' className='button-style '>
-                <span className='font-button'>Iniciar</span>
+          <Link to="/initialInformation">
+            <button type='button' className='button-style'>
+              <span className='font-button'>Iniciar</span>
             </button>
+          </Link>
           </div>
         </div>
         <div>
           <img src={imageHome1} alt="" />
         </div>
       </div>
-      <div>
+      <div className='padding-bottom'>
       <div className='margin-left font-title-div-2 font-color-2 padding-bottom'>
         <span>Informações importantes</span>
       </div>
