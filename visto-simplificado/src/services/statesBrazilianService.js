@@ -5,10 +5,10 @@ const statesBrazilianService = {
 
   getStates: async () => {
     try {
-      const API_URL = `${statesBrazilianService.baseUrl}`; // Use a variável de contexto correta
+      const API_URL = `${statesBrazilianService.baseUrl}`; 
 
       const httpHeaders = {
-        "Content-Type": "application/json", // Corrija o nome da chave
+        "Content-Type": "application/json", 
       };
 
       const response = await axios.get(API_URL, { headers: httpHeaders });
@@ -19,7 +19,7 @@ const statesBrazilianService = {
         return [];
       }
     } catch (error) {
-      console.error("Erro ao buscar estados", error); // Altere a mensagem de erro
+      console.error("Erro ao buscar estados", error); 
     }
   }
 };

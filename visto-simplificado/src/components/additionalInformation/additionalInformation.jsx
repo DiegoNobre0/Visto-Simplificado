@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react"
-import './initial-information.css'
+import './additionalInformation.css'
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import statesBrazilianService from "../../services/statesBrazilianService";
+
 import { Link } from "react-router-dom";
+import statesBrazilianService from "../../services/statesBrazilianService";
 
 
-function InitialInformation () {
+function AdditionalInformation () {
     const getStates = async () =>{        
         const response = await statesBrazilianService.getStates();
         setStates(response);        
@@ -29,16 +30,11 @@ function InitialInformation () {
         getStates();
     }, []);
 
-  return (
-    <div className='div-flex'>
-        <div className='div-width'>
-            
-        </div>
+  return (        
         <div className="div-margin">
             <div className="padding-bottom">
-                <span className="title-header">Informações iniciais</span><br />
-                <hr className="hr-color"/>
-                <span className="subTitle-header">O formulário DS-160 é um formulário obrigatório para preenchimento por todos os solicitantes do visto americano de não imigrante. Nesta categoria, estão diversos tipos de visto, como turismo, estudos, negócios, entre outros.</span>
+                <span className="title-header">Informações adicionais</span><br />
+                <hr className="hr-color"/>                
             </div>
             <div className="div-2-padding ">
                 <div className="padding-bottom-1">
@@ -87,22 +83,8 @@ function InitialInformation () {
                     </div>
                 </div>
             </div>
-            <div className="style-observation font-style-observation">
-                <span>* Caso esteja solicitando o visto sozinho, selecione <b>“ESTOU REALIZANDO O MEU VISTO SOZINHO”</b>.</span><br/>
-                <span>* Deve haver apenas um solicitante principal por família.</span><br/>
-                <span>* Caso já tenha selecionado um solicitante principal em outro formulário, selecione <b>NÃO SOU O SOLICITANTE PRINCIPAL</b> para este formulário</span>
-            </div>
-
-            <div className='padding-top'>
-            <Link to="/form">
-                <button type='button' className='button-style' >
-                    <span className='font-button'>Próxima</span>
-                </button>
-            </Link>    
-          </div>
-        </div>
-    </div>
+        </div>    
   )
 }
 
-export default InitialInformation
+export default AdditionalInformation
