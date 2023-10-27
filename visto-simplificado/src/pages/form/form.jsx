@@ -1,12 +1,7 @@
 import React, { useState } from "react"
-import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import InitialInformation from "../initial-information/initial-information";
-import Teste from "../../components/personalInformation/personalInformation";
 import PersonalInformation from "../../components/personalInformation/personalInformation";
 import AdditionalInformation from "../../components/additionalInformation/additionalInformation";
 
@@ -39,7 +34,7 @@ function Form() {
     const allComponents = [
         <PersonalInformation key="personalInfo" />,
         <AdditionalInformation key="additionalInfo" />,
-      ];
+    ];
 
   return (
     <div className='div-flex'>
