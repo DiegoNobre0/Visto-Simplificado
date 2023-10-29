@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react"
 import './personalInformation.css'
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
-
-import { Link } from "react-router-dom";
+import {MenuItem, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../services/statesBrazilianService";
-
+import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
 
 function PersonalInformation () {
     const getStates = async () =>{        
@@ -33,20 +29,43 @@ function PersonalInformation () {
   return (        
         <div className="div-margin">
             <div className="padding-bottom">
-                <span className="title-header">Informações Pessoais</span><br />
+                <div style={{display:'flex', justifyContent: 'space-between'}}>
+                    <div>
+                        <span className="title-header">Informações Pessoais</span>
+                    </div>
+                    <div>
+                        <span className="title-header-1">Dados pessoais</span>
+                    </div>
+                </div>
                 <hr className="hr-color"/>                
             </div>
-            <div className="div-2-padding ">
-                <div className="padding-bottom-1">
-                    <span className="title-header-2">Consulado de preferência para adicionar ao DS-160</span>
-                </div>
-                <div>
-                    <div style={{paddingBottom:'0.4rem'}}>
-                        <span className="span-state">Selecione o estado</span>
+            <div className="div-2-padding">
+                <div className="div-flex-inputs">
+                    <div>
+                        <div style={{paddingBottom:'0.4rem'}}>
+                            <span className="span-state">Nome*</span>
+                        </div>
+                        <div className="padding-bottom-1">
+                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                        </div>
                     </div>
-                    <div className="padding-bottom-1">
+                    <div>
+                        <div style={{paddingBottom:'0.4rem'}}>
+                            <span className="span-state">Sobrenome*</span>
+                        </div>
+                        <div className="padding-bottom-1">
+                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                        </div>
+                    </div>
+                </div>
+                <div className="div-flex-inputs">
+                    <div>
+                        <div style={{paddingBottom:'0.4rem'}}>
+                            <span className="span-state">Estado Civil*</span>
+                        </div>
+                        <div className="padding-bottom-1">
                         <Select
-                        className="style-select"
+                        className="style-select input-style"
                         labelId="select-state"
                         id="select-state"
                         value={selectedState}
@@ -59,26 +78,76 @@ function PersonalInformation () {
                             ))}
                         </Select>
                     </div>
-                    <div >
-                        <div className="padding-bottom-1">
-                            <div className="padding-bottom-1">
-                                <span className="title-header-2">Você é o solicitante principal?</span>
-                            </div>
-                            <span className="subTitle-div-2">Caso você esteja realizando o visto com a família, o solicitante principal é a pessoa que está responsável por seu visto e de seus familiares, haverá apenas uma conta que estará no nome do solicitante principal e seu familiares estarão ligados à essa conta.</span>
+                    </div>
+                    <div>
+                        <div style={{paddingBottom:'0.4rem'}}>
+                            <span className="span-state">Genero*</span>
                         </div>
-                        <div>
-                            <RadioGroup
+                        <div className="padding-bottom-1">
+                        <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="female"
+                                defaultValue="Feminino"
                                 name="radio-buttons-group"
                                 className="subTitle-div-2"
-                                value={radioRequester}
-                                onChange={handleChangeRequester}
+                                row                                
                             >
-                                <FormControlLabel value="Sim, sou solicitante principal" control={<Radio />} label="Sim, sou solicitante principal" />
-                                <FormControlLabel value="Não sou o solicidade principal" control={<Radio />} label="Não sou o solicidade principal" />
-                                <FormControlLabel value="Estou realizando o meu visto sozinho" control={<Radio />} label="Estou realizando o meu visto sozinho" />
-                            </RadioGroup>
+                                <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
+                                <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                
+                        </RadioGroup>
+                        </div>
+                    </div>
+                </div>
+                <div className="div-flex-inputs">
+                    <div>
+                        <div style={{paddingBottom:'0.4rem'}}>
+                            <span className="span-state">Data de nascimento*</span>
+                        </div>
+                        <div className="padding-bottom-1">
+                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                        </div>
+                    </div>
+                    <div>
+                        <div style={{paddingBottom:'0.4rem'}}>
+                            <span className="span-state">CPF*</span>
+                        </div>
+                        <div className="padding-bottom-1">
+                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                        </div>
+                    </div>
+                </div>
+                <div className="div-flex-inputs">
+                    <div>
+                        <div style={{paddingBottom:'0.4rem'}}>
+                            <span className="span-state">Telefone*</span>
+                        </div>
+                        <div className="padding-bottom-1">
+                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                        </div>
+                    </div>
+                    <div>
+                        <div style={{paddingBottom:'0.4rem'}}>
+                            <span className="span-state">Telefone secundário*</span>
+                        </div>
+                        <div className="padding-bottom-1">
+                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                        </div>
+                    </div>
+                </div>
+                <div className="div-flex-inputs">
+                    <div>
+                        <div style={{paddingBottom:'0.4rem'}}>
+                            <span className="span-state">Email principal*</span>
+                        </div>
+                        <div className="padding-bottom-1">
+                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                        </div>
+                    </div>
+                    <div>
+                        <div style={{paddingBottom:'0.4rem'}}>
+                            <span className="span-state">Email secundário*</span>
+                        </div>
+                        <div className="padding-bottom-1">
+                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
                         </div>
                     </div>
                 </div>

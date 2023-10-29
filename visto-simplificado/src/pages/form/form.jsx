@@ -54,8 +54,8 @@ function Form() {
             })}
             </Stepper>
     </div>
-    <div>
-        <div className="div-margin">
+    <div className="div-margin" style={{width:'100%'}}>
+        <div >
             {allComponents[activeStep]}    
         </div>
 
