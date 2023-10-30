@@ -59,7 +59,7 @@ function Form() {
             {allComponents[activeStep]}    
         </div>
 
-        <div style={{display:'flex', justifyContent:'end'}}>
+        {/* <div style={{display:'flex', justifyContent:'end'}}>
             <button 
             type='button'
             className='button-style'
@@ -76,7 +76,7 @@ function Form() {
             >
                 <span className='font-button'>{activeStep === steps.length - 1 ? 'Finalizar' : 'Próxima'}</span>
             </button>                  
-        </div>
+        </div> */}
     </div>
 </div>
   )
