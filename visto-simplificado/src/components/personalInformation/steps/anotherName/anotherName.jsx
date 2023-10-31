@@ -39,12 +39,12 @@ function AnotherName () {
                 </div>
                 <hr className="hr-color"/>                
             </div>
-            <div className="div-2-padding">
+            <div className="div-name-padding">
             <div>
-                <div style={{paddingBottom:'0.4rem'}}>
+                <div className="div-another-padding" style={{paddingBottom:'0.4rem'}}>
                     <span className="span-state">Já teve outro nome?*</span>
                 </div>
-                <div className="padding-bottom-1">
+                <div className="div-another-padding">
                 <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue="Feminino"
@@ -58,17 +58,17 @@ function AnotherName () {
                 </div>
             </div> 
             </div>
-            <div className="div-2-padding">              
-                <div className="padding-bottom-1">
+            <div className="div-name-padding">              
+                <div className="padding-bottom-1 div-another-padding">
                     <span className="title-header-2">Outro nome(a)*</span>
                 </div>
-                <div className="div-flex-inputs">
+                <div className="div-grid-another-inputs">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
                             <span className="span-state">Digite seu antigo primeiro nome*</span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                            <TextField id="outlined-basic" className="input-style-another" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                         </div>
                     </div>
                     <div>
@@ -76,7 +76,7 @@ function AnotherName () {
                             <span className="span-state">Digite seu antigo sobrenome*</span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <TextField id="outlined-basic" className="input-style-another" placeholder="Escreva o seu sobrenome" variant="outlined" />
                         </div>
                     </div>
                 </div>

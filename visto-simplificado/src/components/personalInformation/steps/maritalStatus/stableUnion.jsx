@@ -39,17 +39,17 @@ function StableUnion () {
                 </div>
                 <hr className="hr-color"/>                
             </div>
-            <div className="div-2-padding">
-                <div className="padding-bottom-1">
+            <div className="div-marital-padding">
+                <div className="padding-bottom-title-input">
                     <span className="title-header-2">Dados do companheiro(a)</span>
                 </div>
-                <div className="div-flex-inputs">
+                <div className="div-1-inputs-marital">
                         <div>
                             <div style={{paddingBottom:'0.4rem'}}>
                                 <span className="span-state">Nome do companheiro*</span>
                             </div>
                             <div className="padding-bottom-1">
-                                <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                                <TextField id="outlined-basic" className="input-style-marital" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                             </div>
                         </div>
                         <div>
@@ -57,7 +57,7 @@ function StableUnion () {
                                 <span className="span-state">Sobrenome do companheiro*</span>
                             </div>
                             <div className="padding-bottom-1">
-                                <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                                <TextField id="outlined-basic" className="input-style-marital" placeholder="Escreva o seu sobrenome" variant="outlined" />
                             </div>
                         </div>
                         <div>
@@ -65,23 +65,23 @@ function StableUnion () {
                                 <span className="span-state">Data de nascimento do companheiro(a)*</span>
                             </div>
                             <div className="padding-bottom-1">
-                                <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                                <TextField id="outlined-basic" className="input-style-marital" placeholder="Escreva o seu sobrenome" variant="outlined" />
                             </div>
                         </div>
                 </div>
             </div>
-            <div className="div-2-padding">
-                <div className="padding-bottom-1">
+            <div className="div-marital-padding">
+                <div className="padding-bottom-title-input">
                     <span className="title-header-2">Nacionalidade do companheiro</span>
                 </div>
-                <div className="div-flex-inputs">
+                <div className="div-2-inputs-marital">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
                             <span className="span-state">Nacionalidade do companheiro(a)*</span>
                         </div>
                         <div className="padding-bottom-1">
                             <Select
-                            className="style-select"
+                            className="style-select-marital"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}
@@ -101,7 +101,7 @@ function StableUnion () {
                         </div>
                         <div className="padding-bottom-1">
                             <Select
-                            className="style-select"
+                            className="style-select-marital"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}
@@ -117,11 +117,11 @@ function StableUnion () {
                     </div>             
                 </div>
             </div>
-            <div className="div-2-padding">
-                <div className="padding-bottom-1">
+            <div className="div-marital-padding">
+                <div className="padding-bottom-title-input">
                     <span className="title-header-2">Seu companheiro(a) mora no mesmo endereço que você?*</span>
                 </div>
-                <div className="padding-bottom-1">
+                <div className="padding-radio-marital">
                     <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue="Feminino"
@@ -134,17 +134,17 @@ function StableUnion () {
                     </RadioGroup>
                 </div>                         
             </div>
-            <div className="div-2-padding">              
-                <div className="padding-bottom-1">
+            <div className="div-marital-padding">              
+                <div className="padding-bottom-title-input">
                     <span className="title-header-2">Endereço do companheiro*</span>
                 </div>                
-                <div className="div-flex-inputs">
+                <div className="div-2-inputs-marital">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
                             <span className="span-state">Endereço do companheiro(a)*</span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                            <TextField id="outlined-basic" className="style-select-marital" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                         </div>
                     </div>
                     <div>
@@ -152,18 +152,18 @@ function StableUnion () {
                             <span className="span-state">Complemento do companheiro(a)*</span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <TextField id="outlined-basic" className="style-select-marital" placeholder="Escreva o seu sobrenome" variant="outlined" />
                         </div>
                     </div>
                 </div>
-                <div className="div-flex-inputs">
+                <div className="div-3-inputs-marital">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
                             <span className="span-state">Cidade do companheiro(a)*</span>
                         </div>
                         <div className="padding-bottom-1">
                         <Select
-                            className="style-select"
+                            className="style-input-2-marital"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}
@@ -183,7 +183,7 @@ function StableUnion () {
                         </div>
                         <div className="padding-bottom-1">
                         <Select
-                            className="style-select"
+                            className="style-input-2-marital"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}
@@ -202,7 +202,7 @@ function StableUnion () {
                             <span className="span-state">CEP do companheiro(a)*</span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <TextField id="outlined-basic" className="style-input-2-marital" placeholder="Escreva o seu sobrenome" variant="outlined" />
                         </div>
                     </div>
                     <div>
@@ -211,7 +211,7 @@ function StableUnion () {
                         </div>
                         <div className="padding-bottom-1">
                         <Select
-                            className="style-select"
+                            className="style-input-2-marital"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}

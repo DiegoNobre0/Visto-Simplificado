@@ -31,37 +31,49 @@ function CNH () {
             <div className="padding-bottom">
                 <div style={{display:'flex', justifyContent: 'space-between'}}>
                     <div>
-                        <span className="title-header">Informações Pessoais</span>
-                    </div>
-                    <div>
-                        <span className="title-header-1">Dados pessoais</span>
-                    </div>
+                        <span className="title-header">Carteira de motorista</span>
+                    </div>                  
                 </div>
                 <hr className="hr-color"/>                
             </div>
             <div className="div-2-padding">
                 <div className="div-flex-inputs">
                     <div>
+                        <div className="padding-bottom-1">
+                            <span className="title-header-2">Já teve ou tem carteira de motorista nos Estados Unidos?*</span>
+                        </div>
+                        <div className="padding-bottom-1">
+                        <RadioGroup
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                defaultValue="Feminino"
+                                name="radio-buttons-group"
+                                className="subTitle-div-2"
+                                row                                
+                            >
+                                <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
+                                <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                
+                        </RadioGroup>
+                        </div>
+                    </div>           
+                </div>
+            </div>   
+            <div className="div-2-padding"> 
+                <div className="div-flex-inputs">
+                    <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Nome*</span>
+                            <span className="span-state">Qual o número da carteira nos Estados Unidos?*</span>
                         </div>
                         <div className="padding-bottom-1">
                             <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                         </div>
-                    </div>
-                    <div>
-                        <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Sobrenome*</span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
-                        </div>
-                    </div>
+                    </div>          
                 </div>
+            </div>
+            <div className="div-2-padding"> 
                 <div className="div-flex-inputs">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Estado Civil*</span>
+                            <span className="span-state">Selecione o estado em que tirou a carteira*</span>
                         </div>
                         <div className="padding-bottom-1">
                         <Select
@@ -78,80 +90,9 @@ function CNH () {
                             ))}
                         </Select>
                     </div>
-                    </div>
-                    <div>
-                        <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Genero*</span>
-                        </div>
-                        <div className="padding-bottom-1">
-                        <RadioGroup
-                                aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="Feminino"
-                                name="radio-buttons-group"
-                                className="subTitle-div-2"
-                                row                                
-                            >
-                                <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
-                                <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                
-                        </RadioGroup>
-                        </div>
-                    </div>
+                    </div>          
                 </div>
-                <div className="div-flex-inputs">
-                    <div>
-                        <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Data de nascimento*</span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
-                        </div>
-                    </div>
-                    <div>
-                        <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">CPF*</span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
-                        </div>
-                    </div>
-                </div>
-                <div className="div-flex-inputs">
-                    <div>
-                        <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Telefone*</span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
-                        </div>
-                    </div>
-                    <div>
-                        <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Telefone secundário*</span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
-                        </div>
-                    </div>
-                </div>
-                <div className="div-flex-inputs">
-                    <div>
-                        <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Email principal*</span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
-                        </div>
-                    </div>
-                    <div>
-                        <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Email secundário*</span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>           
         </div>    
   )
 }

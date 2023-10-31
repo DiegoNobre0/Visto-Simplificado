@@ -13,10 +13,11 @@ import USAFamily from './steps/USAFamily/USAFamily';
 import DistantFamily from './steps/distantFamily/distantFamily';
 import Group from './steps/group/group';
 import CNH from './steps/CNH/CNH';
+import SocialNetwork from './steps/socialNetwork/socialNetwork';
 
 
 
-const steps = ['1','2','3','4','5','6','7','8','9'];
+const steps = ['1','2','3','4','5','6','7','8','9','10','11'];
 
 function PersonalInformation () {
     const [activeStep, setActiveStep] = useState(0);
@@ -52,6 +53,7 @@ function PersonalInformation () {
         <USAFamily key="USAFamily"/>,
         <DistantFamily key="distantFamily"/>,
         <Group key="group"/>,
+        <SocialNetwork key="socialNetwork"/>,
         <CNH key="CNH"/>
     ];
 
@@ -62,7 +64,7 @@ function PersonalInformation () {
             {allComponents[activeStep]}    
         </div>
 
-        <div style={{display:'flex', justifyContent:'end'}}>
+        <div style={{display:'flex', justifyContent:'end', paddingRight: '4rem'}}>
             <button 
             type='button'
             className='button-style'

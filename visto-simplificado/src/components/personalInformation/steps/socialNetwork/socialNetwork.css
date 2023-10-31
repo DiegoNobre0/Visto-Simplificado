@@ -62,9 +62,9 @@
     padding-bottom: 1rem;
 }
 
-.div-initial-padding{
+.div-2-padding{
     background-color: #F3F5FC;
-    padding: 2rem 0rem 2rem 0rem;
+    padding: 2rem;
     border-radius: 8px;
     margin-bottom: 3rem;
     width: 100%;
@@ -78,8 +78,8 @@
 }
 
 
-.style-select-initial{
-    width:28.3rem;
+.style-select{
+    width:29rem;
     background:white;
 }
 
@@ -111,19 +111,13 @@
    
 }
 
-.input-style-initial{
+.input-style{
     background-color: #ffff;
-    width: 38.3rem;
+    width: 28.3rem;
 }
 
-.div-grid-initial-inputs{
-    display: grid;   
-    grid-template-columns: 50% 50%;
-    padding-left: 3rem;
-}
-
-.custom-date-picker {
-    width: 38.3rem;
-    background-color: #ffff;
+.div-flex-inputs{
+    display: flex;
+    justify-content: space-evenly;
 }
 
