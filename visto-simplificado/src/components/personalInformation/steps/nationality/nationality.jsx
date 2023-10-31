@@ -36,18 +36,18 @@ function Nationality () {
                 </div>
                 <hr className="hr-color"/>                
             </div>
-            <div className="div-2-padding">
-                <div className="padding-bottom-1">
-                    <span className="title-header-2">Nacionalidade*</span>
+            <div className="div-nationality-padding">
+                <div className="padding-bottom-nationality">
+                    <span className="title-header-2">Nacionalidade<span style={{color:'red'}}>*</span></span>
                 </div>
-                <div className="div-flex-inputs">
+                <div className="div-grid-nationality-inputs">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Pais natal*</span>
+                            <span className="span-state">Pais natal<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                             <Select
-                            className="style-select"
+                            className="style-select-nationality"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}
@@ -63,11 +63,11 @@ function Nationality () {
                     </div>
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Cidade natal*</span>
+                            <span className="span-state">Cidade natal<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                             <Select
-                            className="style-select"
+                            className="style-select-nationality"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}
@@ -83,11 +83,11 @@ function Nationality () {
                     </div>
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Estado natal*</span>
+                            <span className="span-state">Estado natal<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                             <Select
-                            className="style-select"
+                            className="style-select-nationality"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}
@@ -102,14 +102,14 @@ function Nationality () {
                         </div>
                     </div>
                 </div>
-                <div className="div-flex-inputs">
+                <div className="div-grid-nationality-inputs-1">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
                             <span className="span-state">Nacionaliadade</span>
                         </div>
                         <div className="padding-bottom-1">
                             <Select
-                            className="style-select"
+                            className="style-select-nationality-1"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}
@@ -124,8 +124,8 @@ function Nationality () {
                         </div>
                     </div>
                     <div>
-                        <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Você possui outra nacionalidade?*</span>
+                        <div style={{paddingBottom:'1rem'}}>
+                            <span className="span-state">Você possui outra nacionalidade?<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                         <RadioGroup
@@ -142,19 +142,19 @@ function Nationality () {
                     </div>                
                 </div>
             </div>
-            <div className="div-2-padding">
-                <div className="padding-bottom-1">
-                    <span className="title-header-2">Outras nacionalidades</span><br />
-                    <span>Caso possua outra nacionalidade ou cidadania, escolha o pais da mesma</span>
+            <div className="div-nationality-padding">
+                <div className="padding-bottom-nationality">
+                    <span className="title-header-2">Outras nacionalidades</span><br /><br />
+                    <span className="subtitle-header">Caso possua outra nacionalidade ou cidadania, escolha o pais da mesma</span>
                 </div>
-                <div className="div-flex-inputs">
+                <div className="div-grid-nationality-inputs-1">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Nacionalidade*</span>
+                            <span className="span-state">Nacionalidade<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                             <Select
-                            className="style-select"
+                            className="style-select-nationality-1"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}
@@ -170,10 +170,10 @@ function Nationality () {
                     </div>
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Número do passaporte*</span>
+                            <span className="span-state">Número do passaporte<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <TextField id="outlined-basic" className="style-select-nationality-1" placeholder="Escreva o seu sobrenome" variant="outlined" />
                         </div>
                     </div>
                 </div>

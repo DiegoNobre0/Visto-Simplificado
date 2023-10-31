@@ -36,75 +36,75 @@ function USAFamily () {
         </div>
         <hr className="hr-color"/>                
     </div>
-    <div className="div-2-padding">
-        <div className="padding-bottom-1">
-            <span className="title-header-2">Você tem algum familiar direto nos Estados Unidos?(Esposo(a);noivo(a);filho(a);irmão(a);)*</span>
+    <div className="div-usa-padding">
+        <div className="padding-usa">
+            <span className="title-header-2">Você tem algum familiar direto nos Estados Unidos?(Esposo(a);noivo(a);filho(a);irmão(a);)<span style={{color:'red'}}>*</span></span>
         </div>
-        <div className="padding-bottom-1">
+        <div className="padding-usa">
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="Feminino"
+                defaultValue="Sim"
                 name="radio-buttons-group"
                 className="subTitle-div-2"
                 row                                
             >
-                <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
-                <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />                                
             </RadioGroup>
         </div>
     </div>
-    <div className="div-2-padding">
+    <div className="div-usa-padding">
     <div >
-        <div className="div-flex-inputs">
+        <div className="div-grid-usa-inputs">
             <div>
                 <div style={{paddingBottom:'0.4rem'}}>
-                    <span className="span-state">Nome do familiar nos Estados Unidos*</span>
+                    <span className="span-state">Nome do familiar nos Estados Unidos<span style={{color:'red'}}>*</span></span>
                 </div>
-                <div className="padding-bottom-1">
-                    <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                <div >
+                    <TextField id="outlined-basic" className="input-style-usa" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                 </div>
             </div>
             <div>
                 <div style={{paddingBottom:'0.4rem'}}>
-                    <span className="span-state">Sobrenome do familiar nos Estados Unidos*</span>
+                    <span className="span-state">Sobrenome do familiar nos Estados Unidos<span style={{color:'red'}}>*</span></span>
                 </div>
-                <div className="padding-bottom-1">
-                    <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                <div >
+                    <TextField id="outlined-basic" className="input-style-usa" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                 </div>
             </div>
         </div>
-        <div className="div-flex-inputs">
+        <div className="div-grid-usa-inputs">
             <div>
                 <div style={{paddingBottom:'0.4rem'}}>
-                    <span className="span-state">Qual a sua relação com o familiar nos Estados Unidos?*</span>
+                    <span className="span-state">Qual a sua relação com o familiar nos Estados Unidos?<span style={{color:'red'}}>*</span></span>
                 </div>
-                <div className="padding-bottom-1">
-                    <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                <div >
+                    <TextField id="outlined-basic" className="input-style-usa" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                 </div>
             </div>
             <div>
                 <div style={{paddingBottom:'0.4rem'}}>
-                    <span className="span-state">Qual a sua situação com o familiar nos Estados Unidos?*</span>
+                    <span className="span-state">Qual a sua situação com o familiar nos Estados Unidos?<span style={{color:'red'}}>*</span></span>
                 </div>
-                <div className="padding-bottom-1">
-                    <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                <div >
+                    <TextField id="outlined-basic" className="input-style-usa" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                 </div>
             </div>
         </div>
         <div>
-        <div className="padding-bottom-1">
-            <span className="title-header-2">Possui algum outro nos Estados Unidos?(Esposo(a);noivo(a);filho(a);irmão(a);)*</span>
+        <div className="padding-usa">
+            <span className="title-header-2">Possui algum outro nos Estados Unidos?(Esposo(a);noivo(a);filho(a);irmão(a);)<span style={{color:'red'}}>*</span></span>
         </div>
-        <div className="padding-bottom-1">
+        <div className="padding-usa">
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="Feminino"
+                defaultValue="Sim"
                 name="radio-buttons-group"
                 className="subTitle-div-2"
                 row                                
             >
-                <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
-                <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />                                
             </RadioGroup>
         </div>
         </div>

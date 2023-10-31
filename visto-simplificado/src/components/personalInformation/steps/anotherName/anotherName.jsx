@@ -42,7 +42,7 @@ function AnotherName () {
             <div className="div-name-padding">
             <div>
                 <div className="div-another-padding" style={{paddingBottom:'0.4rem'}}>
-                    <span className="span-state">Já teve outro nome?*</span>
+                    <span className="span-state">Já teve outro nome?<span style={{color:'red'}}>*</span></span>
                 </div>
                 <div className="div-another-padding">
                 <RadioGroup
@@ -60,12 +60,12 @@ function AnotherName () {
             </div>
             <div className="div-name-padding">              
                 <div className="padding-bottom-1 div-another-padding">
-                    <span className="title-header-2">Outro nome(a)*</span>
+                    <span className="title-header-2">Outro nome(a)<span style={{color:'red'}}>*</span></span>
                 </div>
                 <div className="div-grid-another-inputs">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Digite seu antigo primeiro nome*</span>
+                            <span className="span-state">Digite seu antigo primeiro nome<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                             <TextField id="outlined-basic" className="input-style-another" placeholder="Escreva o seu primeiro nome" variant="outlined" />
@@ -73,7 +73,7 @@ function AnotherName () {
                     </div>
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Digite seu antigo sobrenome*</span>
+                            <span className="span-state">Digite seu antigo sobrenome<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                             <TextField id="outlined-basic" className="input-style-another" placeholder="Escreva o seu sobrenome" variant="outlined" />

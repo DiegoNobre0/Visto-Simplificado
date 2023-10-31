@@ -36,33 +36,33 @@ function Group () {
                 </div>
                 <hr className="hr-color"/>                
             </div>
-            <div className="div-2-padding">
-                <div className="div-flex-inputs">
+            <div className="div-group-padding">
+                <div className="div-flex-inputs-group">
                     <div>
                         <div className="padding-bottom-1">
-                            <span className="title-header-2">Você pertence a algum grupo, clã ou tribo*</span>
+                            <span className="title-header-2">Você pertence a algum grupo, clã ou tribo<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                         <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="Feminino"
+                                defaultValue="Sim"
                                 name="radio-buttons-group"
                                 className="subTitle-div-2"
                                 row                                
                             >
-                                <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
-                                <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                
+                                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                                <FormControlLabel value="Não" control={<Radio />} label="Não" />                                
                         </RadioGroup>
                         </div>
                     </div>                 
                 </div>            
-                <div className="div-flex-inputs">
+                <div className="div-flex-inputs-group">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Qual grupo, clã ou tribo você pertence?*</span>
+                            <span className="span-state">Qual grupo, clã ou tribo você pertence?<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                            <TextField id="outlined-basic" className="input-style" placeholder="Digite aqui o seu grupo, clã ou tribo" variant="outlined" />
                         </div>
                     </div>                  
                 </div>

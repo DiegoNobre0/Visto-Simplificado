@@ -36,38 +36,38 @@ function DistantFamily () {
         </div>
         <hr className="hr-color"/>                
     </div>
-    <div className="div-2-padding">
-        <div className="padding-bottom-1">
-            <span className="title-header-2">Você possui algum outro familiar direto nos Estados Unidos?(Ex: TIO;PRIMO;SOBRINHO)*</span>
+    <div className="div-distant-padding">
+        <div className="padding-bottom-distant">
+            <span className="title-header-2">Você possui algum outro familiar direto nos Estados Unidos?(Ex: TIO;PRIMO;SOBRINHO)<span style={{color:'red'}}>*</span></span>
         </div>
-        <div className="padding-bottom-1">
+        <div className="padding-bottom-distant">
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="Feminino"
+                defaultValue="Sim"
                 name="radio-buttons-group"
-                className="subTitle-div-2"
+                // className="subTitle-div-2"
                 row                                
             >
-                <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
-                <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />                                
             </RadioGroup>
         </div>
     </div>
-    <div className="div-2-padding">
-        <div className="padding-bottom-1">
-            <span className="title-header-2">Qual é a sua principal ocupação?*</span>
+    <div className="div-distant-padding">
+        <div className="padding-bottom-distant">
+            <span className="title-header-2">Qual é a sua principal ocupação?<span style={{color:'red'}}>*</span></span>
         </div>
-        <div className="padding-bottom-1">
+        <div className="padding-bottom-distant">
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="Feminino"
+                defaultValue="Empregado"
                 name="radio-buttons-group"
                 className="subTitle-div-2"
                 row                                
             >
-                <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
-                <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />
-                <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                 
+                <FormControlLabel value="Estudante" control={<Radio />} label="Estudante" />
+                <FormControlLabel value="Empregado" control={<Radio />} label="Empregado" />
+                <FormControlLabel value="Aposentado" control={<Radio />} label="Aposentado" />                                 
             </RadioGroup>
         </div>
     </div>
@@ -80,49 +80,49 @@ function DistantFamily () {
         </div>
         <hr className="hr-color"/>                
     </div>
-    <div className="div-2-padding">
+    <div className="div-distant-padding">
     <div >
-        <div className="div-flex-inputs">
+        <div className="div-grid-inputs-distant">
             <div>
-                <div style={{paddingBottom:'0.4rem'}}>
-                    <span className="span-state">Área de ocupação*</span>
+                <div style={{paddingBottom:'0.4rem'}} className="padding-bottom-distant">
+                    <span className="span-state">Área de ocupação<span style={{color:'red'}}>*</span></span>
                 </div>
-                <div className="padding-bottom-1">
-                    <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                <div className="padding-bottom-distant">
+                    <TextField id="outlined-basic" className="input-style-distant" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                 </div>
             </div>
             <div>
-                <div style={{paddingBottom:'0.4rem'}}>
-                    <span className="span-state">Nome da instituição/empresa*</span>
+                <div style={{paddingBottom:'0.4rem'}} >
+                    <span className="span-state">Nome da instituição/empresa<span style={{color:'red'}}>*</span></span>
                 </div>
-                <div className="padding-bottom-1">
-                    <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                <div>
+                    <TextField id="outlined-basic" className="input-style-distant" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                 </div>
             </div>
         </div>
-        <div className="div-flex-inputs">
-            <div>
-                <div style={{paddingBottom:'0.4rem'}}>
-                    <span className="span-state">Endereço da instituição/empresa*</span>
+        <div className="div-grid-inputs-distant-2">
+            <div >
+                <div style={{paddingBottom:'0.4rem'}} >
+                    <span className="span-state">Endereço da instituição/empresa<span style={{color:'red'}}>*</span></span>
                 </div>
-                <div className="padding-bottom-1">
-                    <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                <div >
+                    <TextField id="outlined-basic" className="input-style-distant-2" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                </div>
+            </div>
+            <div >
+                <div style={{paddingBottom:'0.4rem'}} >
+                    <span className="span-state">Cidade da instituição/empresa<span style={{color:'red'}}>*</span></span>
+                </div>
+                <div >
+                    <TextField id="outlined-basic" className="input-style-distant-2" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                 </div>
             </div>
             <div>
-                <div style={{paddingBottom:'0.4rem'}}>
-                    <span className="span-state">Cidade da instituição/empresa*</span>
+                <div style={{paddingBottom:'0.4rem'}} >
+                    <span className="span-state">Estado da instituição/empresa<span style={{color:'red'}}>*</span></span>
                 </div>
-                <div className="padding-bottom-1">
-                    <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
-                </div>
-            </div>
-            <div>
-                <div style={{paddingBottom:'0.4rem'}}>
-                    <span className="span-state">Estado da instituição/empresa*</span>
-                </div>
-                <div className="padding-bottom-1">
-                    <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                <div >
+                    <TextField id="outlined-basic" className="input-style-distant-2" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                 </div>
             </div>
         </div>

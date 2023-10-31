@@ -40,7 +40,7 @@ function CNH () {
                 <div className="div-flex-inputs">
                     <div>
                         <div className="padding-bottom-1">
-                            <span className="title-header-2">Já teve ou tem carteira de motorista nos Estados Unidos?*</span>
+                            <span className="title-header-2">Já teve ou tem carteira de motorista nos Estados Unidos?<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                         <RadioGroup
@@ -61,7 +61,7 @@ function CNH () {
                 <div className="div-flex-inputs">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Qual o número da carteira nos Estados Unidos?*</span>
+                            <span className="span-state">Qual o número da carteira nos Estados Unidos?<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                             <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
@@ -73,7 +73,7 @@ function CNH () {
                 <div className="div-flex-inputs">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Selecione o estado em que tirou a carteira*</span>
+                            <span className="span-state">Selecione o estado em que tirou a carteira<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                         <Select

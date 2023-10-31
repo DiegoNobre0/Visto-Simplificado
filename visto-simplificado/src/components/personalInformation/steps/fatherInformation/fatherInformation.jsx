@@ -3,6 +3,17 @@ import './fatherInformation.css'
 import {MenuItem, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../../../services/statesBrazilianService"
 import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+
+const statusArray = [
+    { key: "Cidadão americano", valor: "Cidadão americano" },
+    { key: "Pode residir permanentemente nos EUA (Green Card)", valor: "Pode residir permanentemente nos EUA (Green Card)" },
+    { key: "Não imigrante", valor: "Não imigrante" },
+    { key: "Outro/Não sei", valor: "Outro/Não sei" },
+  ];
 
 function FatherInformation () {
     const getStates = async () =>{        
@@ -11,12 +22,15 @@ function FatherInformation () {
     }
 
     const [states, setStates] = useState([]);
-    const [selectedState, setSelectedState] = useState("");
+    const [selectedState, setSelectedState] = useState("");    
+    const [selectedMaritalStatus, setSelectedMaritalStatus] = useState("");
     const [radioRequester, setRadioRequester] = useState("");
 
     const handleChangeSelect = (event) => {
-        setSelectedState(event.target.value);
+        setSelectedMaritalStatus(event.target.value);
     };
+
+
 
     const handleChangeRequester = (event) => {
         setRadioRequester(event.target.value);
@@ -36,72 +50,98 @@ function FatherInformation () {
                 </div>
                 <hr className="hr-color"/>                
             </div>
-            <div className="div-2-padding">
-                <div className="padding-bottom-1">
-                    <span className="title-header-2">Você tem informações básica sobre sua pai?*</span>
+            <div className="div-family-padding">
+                <div className="padding-bottom-family">
+                    <span className="title-header-2">Você tem informações básica sobre sua pai?<span style={{color:'red'}}>*</span></span>
                 </div>
-                <div className="padding-bottom-1">
+                <div className="padding-bottom-family">
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue="Feminino"
+                        defaultValue="Sim"
                         name="radio-buttons-group"
                         className="subTitle-div-2"
                         row                                
                     >
-                        <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
-                        <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                
+                        <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                        <FormControlLabel value="Não" control={<Radio />} label="Não" />                                
                     </RadioGroup>
                 </div>
             </div>
-            <div className="div-2-padding">
-            <div className="div-flex-inputs">
+            <div className="div-family-padding">
+            <div className="div-family-inputs">
                 <div>
                     <div style={{paddingBottom:'0.4rem'}}>
-                        <span className="span-state">Nome da sua pai*</span>
+                        <span className="span-state">Nome da sua pai<span style={{color:'red'}}>*</span></span>
                     </div>
-                    <div className="padding-bottom-1">
-                        <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                    <div >
+                        <TextField id="outlined-basic" className="input-style-family" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                     </div>
                 </div>
                 <div>
                     <div style={{paddingBottom:'0.4rem'}}>
-                        <span className="span-state">Sobrenome da sua pai*</span>
+                        <span className="span-state">Sobrenome da sua pai<span style={{color:'red'}}>*</span></span>
                     </div>
-                    <div className="padding-bottom-1">
-                        <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                    <div >
+                        <TextField id="outlined-basic" className="input-style-family" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                     </div>
                 </div>
             </div>
             </div>
-            <div className="div-2-padding">
+            <div className="div-family-padding">
+            <div className="div-family-inputs">
                 <div>
                     <div style={{paddingBottom:'0.4rem'}}>
-                        <span className="span-state">Qual a data de nascimento da sua pai*</span>
+                        <span className="span-state">Qual a data de nascimento da sua pai<span style={{color:'red'}}>*</span></span>
                     </div>
-                    <div className="padding-bottom-1">
-                        <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                    <div >
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DatePicker format="DD/MM/YYYY" className="custom-date-picker"/>
+                    </LocalizationProvider>
                     </div>
                 </div>  
             </div>
-            <div className="div-2-padding">
+            </div>
+            <div className="div-family-padding">
                 <div>
-                    <div className="padding-bottom-1">
-                        <span className="title-header-2">Sua pai está nos Estados Unidos?*</span>
-                    </div>
-                    <div className="padding-bottom-1">
-                        <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                    <div className="padding-bottom-family">
+                        <span className="title-header-2">Sua pai está nos Estados Unidos?<span style={{color:'red'}}>*</span></span>
+                    </div>                    
+                    <div className="padding-bottom-family">
+                    <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="Sim"
+                        name="radio-buttons-group"
+                        className="subTitle-div-2"
+                        row                                
+                    >
+                        <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                        <FormControlLabel value="Não" control={<Radio />} label="Não" />                                
+                    </RadioGroup>
                     </div>
                 </div>  
             </div>
-            <div className="div-2-padding">
+            <div className="div-family-padding">
+            <div className="div-family-inputs">
                 <div>
                     <div style={{paddingBottom:'0.4rem'}}>
-                        <span className="span-state">Qual a situação da sua pai nos Estados Unidos*</span>
+                        <span className="span-state">Qual a situação da sua pai nos Estados Unidos<span style={{color:'red'}}>*</span></span>
                     </div>
-                    <div className="padding-bottom-1">
-                        <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                    <div >
+                    <Select
+                        className="style-select-initial input-style-initial"
+                        placeholder="teste"
+                        value={selectedMaritalStatus}
+                        onChange={handleChangeSelect}
+                        >
+                          {statusArray.map((status) => (
+                            <MenuItem key={status.key} value={status.key}>
+                            {status.valor}
+                            </MenuItem>
+                            ))}
+                        </Select>
                     </div>
-                </div>  
+                </div> 
+            </div>
             </div>
         </div>    
   )

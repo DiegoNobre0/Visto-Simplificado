@@ -58,13 +58,14 @@
     padding-bottom: 2rem;
 }
 
-.padding-bottom-1{
+.padding-bottom-nationality{
     padding-bottom: 1rem;
+    padding-left: 3rem;
 }
 
-.div-2-padding{
+.div-nationality-padding{
     background-color: #F3F5FC;
-    padding: 2rem;
+    padding: 2rem 0rem 2rem 0rem;
     border-radius: 8px;
     margin-bottom: 3rem;
     width: 100%;
@@ -77,9 +78,21 @@
     color: #091F5F;   
 }
 
+.subtitle-header{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #6579A8;   
+}
 
-.style-select{
-    width:29rem;
+
+.style-select-nationality{
+    width:25.5rem;
+    background:white;
+}
+
+.style-select-nationality-1{
+    width:38.3rem;
     background:white;
 }
 
@@ -116,8 +129,15 @@
     width: 28.3rem;
 }
 
-.div-flex-inputs{
-    display: flex;
-    justify-content: space-evenly;
+.div-grid-nationality-inputs{
+    display: grid;   
+    grid-template-columns: 33% 33% 33%;
+    padding-left: 3rem;
+}
+
+.div-grid-nationality-inputs-1{
+    display: grid;   
+    grid-template-columns: 50% 50%;
+    padding-left: 3rem;
 }
 

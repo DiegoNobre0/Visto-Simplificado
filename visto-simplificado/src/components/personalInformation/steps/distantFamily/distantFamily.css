@@ -58,13 +58,14 @@
     padding-bottom: 2rem;
 }
 
-.padding-bottom-1{
+.padding-bottom-distant{
     padding-bottom: 1rem;
+    padding-left: 3rem;
 }
 
-.div-2-padding{
+.div-distant-padding{
     background-color: #F3F5FC;
-    padding: 2rem;
+    padding: 2rem 0rem 2rem 0rem;
     border-radius: 8px;
     margin-bottom: 3rem;
     width: 100%;
@@ -111,13 +112,29 @@
    
 }
 
-.input-style{
+.input-style-distant{
     background-color: #ffff;
-    width: 28.3rem;
+    width: 38.3rem;
 }
 
-.div-flex-inputs{
-    display: flex;
-    justify-content: space-evenly;
+.input-style-distant-2{
+    background-color: #ffff;
+    width: 25.5rem;
+}
+
+
+
+
+.div-grid-inputs-distant{
+    display: grid;   
+    grid-template-columns: 52% 50%;    
+    padding-bottom: 1rem;
+}
+
+.div-grid-inputs-distant-2{
+    display: grid;   
+    grid-template-columns: 33% 33% 33%;    
+    padding-bottom: 1rem;
+    padding-left: 3rem;
 }
 

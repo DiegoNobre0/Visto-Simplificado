@@ -62,9 +62,9 @@
     padding-bottom: 1rem;
 }
 
-.div-2-padding{
+.div-social-padding{
     background-color: #F3F5FC;
-    padding: 2rem;
+    padding: 2rem 0rem 2rem 0rem;
     border-radius: 8px;
     margin-bottom: 3rem;
     width: 100%;
@@ -111,13 +111,15 @@
    
 }
 
-.input-style{
+.input-style-social{
     background-color: #ffff;
-    width: 28.3rem;
+    width: 38.3rem;
 }
 
-.div-flex-inputs{
-    display: flex;
-    justify-content: space-evenly;
+.div-grid-social-inputs{
+    display: grid;   
+    grid-template-columns: 50% 50%;
+    padding-left: 3rem;
+    padding-bottom: 1rem;
 }
 

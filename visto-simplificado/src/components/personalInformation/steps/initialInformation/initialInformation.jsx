@@ -23,7 +23,7 @@ function InitialInformation () {
     }
 
     const [states, setStates] = useState([]);
-    const [selectedMaritalStatus, setSelectedMaritalStatus] = useState("teste");
+    const [selectedMaritalStatus, setSelectedMaritalStatus] = useState("");
     const [radioRequester, setRadioRequester] = useState("");
 
     const handleChangeSelect = (event) => {
@@ -115,7 +115,7 @@ function InitialInformation () {
                         </div>
                         <div className="padding-bottom-1">
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker format="DD/MM/YYYY" className="custom-date-picker"/>
+                            <DatePicker format="DD/MM/YYYY" className="custom-date-picker-initial"/>
                         </LocalizationProvider>
                         </div>
                     </div>
