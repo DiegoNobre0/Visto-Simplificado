@@ -36,8 +36,8 @@ function CNH () {
                 </div>
                 <hr className="hr-color"/>                
             </div>
-            <div className="div-2-padding">
-                <div className="div-flex-inputs">
+            <div className="div-cng-padding">
+                <div className="div-cnh-inputs">
                     <div>
                         <div className="padding-bottom-1">
                             <span className="title-header-2">Já teve ou tem carteira de motorista nos Estados Unidos?<span style={{color:'red'}}>*</span></span>
@@ -57,8 +57,8 @@ function CNH () {
                     </div>           
                 </div>
             </div>   
-            <div className="div-2-padding"> 
-                <div className="div-flex-inputs">
+            <div className="div-cng-padding"> 
+                <div className="div-cnh-inputs">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
                             <span className="span-state">Qual o número da carteira nos Estados Unidos?<span style={{color:'red'}}>*</span></span>
@@ -69,8 +69,8 @@ function CNH () {
                     </div>          
                 </div>
             </div>
-            <div className="div-2-padding"> 
-                <div className="div-flex-inputs">
+            <div className="div-cng-padding"> 
+                <div className="div-cnh-inputs">
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
                             <span className="span-state">Selecione o estado em que tirou a carteira<span style={{color:'red'}}>*</span></span>

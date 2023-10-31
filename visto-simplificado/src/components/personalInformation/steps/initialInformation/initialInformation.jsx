@@ -11,12 +11,13 @@ import InputMask from 'react-input-mask';
 const statusArray = [
     { key: "solteiro", valor: "Solteiro" },
     { key: "casado", valor: "Casado" },
+    { key: "divorciado", valor: "Divorciado" },
     { key: "uniao_estavel", valor: "União Estável" },
     { key: "viuvo", valor: "Viúvo" },
   ];
 
 
-function InitialInformation () {
+function InitialInformation (props) {
     const getStates = async () =>{        
         const response = await statesBrazilianService.getStates();
         setStates(response);        
@@ -26,12 +27,9 @@ function InitialInformation () {
     const [selectedMaritalStatus, setSelectedMaritalStatus] = useState("");
     const [radioRequester, setRadioRequester] = useState("");
 
-    const handleChangeSelect = (event) => {
+    const handleChangeSelect = (event) => { 
         setSelectedMaritalStatus(event.target.value);
-    };
-
-    const handleChangeRequester = (event) => {
-        setRadioRequester(event.target.value);
+        props.onStatusChange(event.target.value);
     };
     
     useEffect(() => {
@@ -77,13 +75,12 @@ function InitialInformation () {
                         </div>
                         <div className="padding-bottom-1">
                         <Select
-                        className="style-select-initial input-style-initial"
-                        placeholder="teste"
+                        className="style-select-initial input-style-initial"                        
                         value={selectedMaritalStatus}
                         onChange={handleChangeSelect}
                         >
                           {statusArray.map((status) => (
-                            <MenuItem key={status.key} value={status.key}>
+                            <MenuItem key={status.key} value={status.valor}>
                             {status.valor}
                             </MenuItem>
                             ))}
@@ -92,7 +89,7 @@ function InitialInformation () {
                     </div>
                     <div>
                         <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Genero<span style={{color:'red'}}>*</span></span>
+                            <span className="span-state">Gênero<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                         <RadioGroup

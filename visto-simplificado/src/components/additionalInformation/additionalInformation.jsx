@@ -3,8 +3,6 @@ import './additionalInformation.css'
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
-
-import { Link } from "react-router-dom";
 import statesBrazilianService from "../../services/statesBrazilianService";
 
 

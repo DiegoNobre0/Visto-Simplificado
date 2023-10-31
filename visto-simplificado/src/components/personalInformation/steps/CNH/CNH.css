@@ -62,9 +62,9 @@
     padding-bottom: 1rem;
 }
 
-.div-2-padding{
+.div-cng-padding{
     background-color: #F3F5FC;
-    padding: 2rem;
+    padding: 2rem 0rem 2rem 0rem;
     border-radius: 8px;
     margin-bottom: 3rem;
     width: 100%;
@@ -116,8 +116,8 @@
     width: 28.3rem;
 }
 
-.div-flex-inputs{
+.div-cnh-inputs{
     display: flex;
-    justify-content: space-evenly;
+    padding-left: 3rem;
 }
 
