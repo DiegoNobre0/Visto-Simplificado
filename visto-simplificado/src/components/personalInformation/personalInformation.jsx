@@ -1,8 +1,5 @@
 import './personalInformation.css'
 import React, { useState } from "react"
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
 import InitialInformation from './steps/initialInformation/initialInformation';
 import StableUnion from './steps/maritalStatus/stableUnion';
 import AnotherName from './steps/anotherName/anotherName';

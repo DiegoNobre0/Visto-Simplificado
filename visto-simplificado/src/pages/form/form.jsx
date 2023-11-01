@@ -32,7 +32,7 @@ function Form() {
     };  
 
     const allComponents = [
-        <PersonalInformation key="personalInfo" onPersonalChange={handleNext}/>,
+        // <PersonalInformation key="personalInfo" onPersonalChange={handleNext}/>,
         <AdditionalInformation key="additionalInfo"/>,
     ];
 

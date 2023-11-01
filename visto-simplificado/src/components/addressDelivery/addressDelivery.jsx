@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import './additionalInformation.css'
+import './addressDelivery.css'
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
@@ -12,7 +12,7 @@ import CountryService from "./steps/countryService/countryService";
 
 const steps = ['1','2','3','4','5','6','7','8','9','10','11'];
 
-function AdditionalInformation () {
+function AddressDelivery () {
     const [activeStep, setActiveStep] = useState(0);
     const [skipped, setSkipped] = useState(new Set()); 
     const [maritalStatus, setMaritalStatus] = useState(null)
@@ -91,4 +91,4 @@ function AdditionalInformation () {
   )
 }
 
-export default AdditionalInformation
+export default AddressDelivery
