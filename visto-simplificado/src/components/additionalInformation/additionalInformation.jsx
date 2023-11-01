@@ -10,9 +10,9 @@ import Formation from "./steps/formation/formation";
 import countryService from "./steps/countryService/countryService";
 import CountryService from "./steps/countryService/countryService";
 
-const steps = ['1','2','3','4','5','6','7','8','9','10','11'];
+const steps = ['1','2','3','4'];
 
-function AdditionalInformation () {
+function AdditionalInformation (props) {
     const [activeStep, setActiveStep] = useState(0);
     const [skipped, setSkipped] = useState(new Set()); 
     const [maritalStatus, setMaritalStatus] = useState(null)
@@ -33,8 +33,8 @@ function AdditionalInformation () {
       
       setSkipped(newSkipped);
       console.log(activeStep)
-      if(activeStep === 10){
-        props.onPersonalChange();
+      if(activeStep === 3){
+        props.onAdditionalChange();
       }
     };
   

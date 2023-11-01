@@ -22,7 +22,7 @@ function PersonalInformation (props) {
     const [activeStep, setActiveStep] = useState(0);
     const [skipped, setSkipped] = useState(new Set()); 
     const [maritalStatus, setMaritalStatus] = useState(null)
-
+    const [selectedStatus, setSelectedStatus] = useState('');
   
     const isStepSkipped = (step) => {
       return skipped.has(step);
@@ -56,7 +56,7 @@ function PersonalInformation (props) {
       }
     }; 
     
-    const [selectedStatus, setSelectedStatus] = useState('');
+   
 
   const handleStatusChange = (status) => {
     setSelectedStatus(status);    

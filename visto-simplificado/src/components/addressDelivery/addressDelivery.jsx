@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react"
 import './addressDelivery.css'
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import statesBrazilianService from "../../services/statesBrazilianService";
-import Charity from "./steps/charity/charity";
-import Work from "./steps/work/work";
-import Formation from "./steps/formation/formation";
-import countryService from "./steps/countryService/countryService";
-import CountryService from "./steps/countryService/countryService";
+import InformationResidence from "./informationResidence/informationResidence";
+import Adress from "./adress/adress";
 
 const steps = ['1','2','3','4','5','6','7','8','9','10','11'];
 
@@ -22,19 +15,25 @@ function AddressDelivery () {
       return skipped.has(step);
     };
   
-    const handleNext = () => {      
+    const handleNext = () => {    
+      debugger  
       let newSkipped = skipped;
       if (isStepSkipped(activeStep)) {
         newSkipped = new Set(newSkipped.values());
         newSkipped.delete(activeStep);
       }
     
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      if(selectedStatus === "Sim"){
+        setActiveStep((prevActiveStep) => prevActiveStep + 2);
+      }
+      else{
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      }
       
       setSkipped(newSkipped);
       console.log(activeStep)
-      if(activeStep === 10){
-        props.onPersonalChange();
+      if(activeStep === 1){
+        props.onAddressChange();
       }
     };
   
@@ -51,10 +50,8 @@ function AddressDelivery () {
   
 
     const allComponents = [
-        <Work key="work"/>,
-        <Formation key="formation"/>,
-        <CountryService key="countryService"/>,        
-        <Charity key="charity"/>
+        <InformationResidence key="informationResidence" onStatusChange={handleStatusChange}/>,
+        <Adress key="adress"/>,      
     ];
 
   return (        
