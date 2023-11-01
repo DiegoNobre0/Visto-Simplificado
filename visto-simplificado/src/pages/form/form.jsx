@@ -5,8 +5,9 @@ import StepLabel from '@mui/material/StepLabel';
 import PersonalInformation from "../../components/personalInformation/personalInformation";
 import AdditionalInformation from "../../components/additionalInformation/additionalInformation";
 import AddressDelivery from "../../components/addressDelivery/addressDelivery";
+import TravelInformation from "../../components/travelInformation/travelInformation";
 
-const steps = ['Informações pessoais', 'Informações adicionais', 'Endereço e residência'];
+const steps = ['Informações pessoais', 'Informações adicionais', 'Endereço e residência','Informações sobre a viagem'];
 
 function Form() {
     const [activeStep, setActiveStep] = useState(0);
@@ -35,7 +36,8 @@ function Form() {
     const allComponents = [
         // <PersonalInformation key="personalInfo" onPersonalChange={handleNext}/>,
         // <AdditionalInformation key="additionalInfo" onAdditionalChange={handleNext}/>,
-        <AddressDelivery key="addressDelivery" onAddressChange={handleNext}/>
+        // <AddressDelivery key="addressDelivery" onAddressChange={handleNext}/>
+        <TravelInformation key="travelInformation"/>    
     ];
 
   return (
