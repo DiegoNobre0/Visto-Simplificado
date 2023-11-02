@@ -53,11 +53,12 @@
     padding-bottom: 1rem;
 }
 
-.div-2-padding{
+.div-home-padding{
     background-color: #F3F5FC;
-    padding: 2rem;
+    padding: 2rem 0rem 2rem 0rem;
     border-radius: 8px;
     margin-bottom: 3rem;
+    padding-left: 3rem;
 }
 
 .title-header-2{

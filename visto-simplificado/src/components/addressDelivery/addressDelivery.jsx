@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
 import './addressDelivery.css'
-import InformationResidence from "./informationResidence/informationResidence";
-import Adress from "./adress/adress";
+import InformationResidence from "./steps/informationResidence/informationResidence";
+import Adress from "./steps/adress/adress";
 
 const steps = ['1','2','3','4','5','6','7','8','9','10','11'];
 
-function AddressDelivery () {
+function AddressDelivery (props) {
     const [activeStep, setActiveStep] = useState(0);
     const [skipped, setSkipped] = useState(new Set()); 
     const [maritalStatus, setMaritalStatus] = useState(null)
@@ -61,7 +61,7 @@ function AddressDelivery () {
             {allComponents[activeStep]}    
         </div>
 
-        <div style={{display:'flex', justifyContent:'end', paddingRight: '4rem'}}>
+        <div style={{display:'flex', justifyContent:'end', marginRight: '-2rem',paddingBottom:'2rem'}}>
           <div style={{paddingRight:'1rem'}}>
             <button 
             type='button'

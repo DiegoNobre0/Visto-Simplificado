@@ -163,7 +163,7 @@ function Married () {
                         </div>
                         <div className="padding-bottom-1">
                         <Select
-                            className="style-input-2-marital"
+                            className="style-input-1-marital"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}
@@ -183,7 +183,7 @@ function Married () {
                         </div>
                         <div className="padding-bottom-1">
                         <Select
-                            className="style-input-2-marital"
+                            className="style-input-1-marital"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}
@@ -202,7 +202,7 @@ function Married () {
                             <span className="span-state">CEP do companheiro(a)<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="style-input-2-marital" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <TextField id="outlined-basic" className="style-input-1-marital" placeholder="Escreva o seu sobrenome" variant="outlined" />
                         </div>
                     </div>
                     <div>
@@ -211,7 +211,7 @@ function Married () {
                         </div>
                         <div className="padding-bottom-1">
                         <Select
-                            className="style-input-2-marital"
+                            className="style-input-1-marital"
                             labelId="select-state"
                             id="select-state"
                             value={selectedState}

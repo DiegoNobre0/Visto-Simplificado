@@ -100,7 +100,7 @@ function PersonalInformation (props) {
             {allComponents[activeStep]}    
         </div>
 
-        <div style={{display:'flex', justifyContent:'end', paddingRight: '4rem'}}>
+        <div style={{display:'flex', justifyContent:'end', marginRight: '-2rem',paddingBottom:'2rem'}}>
           <div style={{paddingRight:'1rem'}}>
             <button 
             type='button'

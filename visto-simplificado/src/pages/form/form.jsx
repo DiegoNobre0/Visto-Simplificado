@@ -6,8 +6,11 @@ import PersonalInformation from "../../components/personalInformation/personalIn
 import AdditionalInformation from "../../components/additionalInformation/additionalInformation";
 import AddressDelivery from "../../components/addressDelivery/addressDelivery";
 import TravelInformation from "../../components/travelInformation/travelInformation";
+import VisaAndPassport from "../../components/visaAndPassport/visaAndPassport";
+import End from "../../components/end/end";
+import './form.css'
 
-const steps = ['Informações pessoais', 'Informações adicionais', 'Endereço e residência','Informações sobre a viagem'];
+const steps = ['Informações pessoais', 'Informações adicionais', 'Endereço e residência','Informações sobre a viagem', 'Visto ou passaporte', 'Fim'];
 
 function Form() {
     const [activeStep, setActiveStep] = useState(0);
@@ -34,16 +37,18 @@ function Form() {
     };  
 
     const allComponents = [
-        // <PersonalInformation key="personalInfo" onPersonalChange={handleNext}/>,
-        // <AdditionalInformation key="additionalInfo" onAdditionalChange={handleNext}/>,
-        // <AddressDelivery key="addressDelivery" onAddressChange={handleNext}/>
-        <TravelInformation key="travelInformation"/>    
+        <PersonalInformation key="personalInfo" onPersonalChange={handleNext}/>,
+        <AdditionalInformation key="additionalInfo" onAdditionalChange={handleNext}/>,
+        <AddressDelivery key="addressDelivery" onAddressChange={handleNext}/>,
+        <TravelInformation key="travelInformation" onTravelInformationChange={handleNext}/>,
+        <VisaAndPassport key="visaAndPassport" onVisaAndPassaportChange={handleNext}/>,
+        <End key="end"/>
     ];
 
   return (
     <div className='div-flex'>
-      <div className='div-width'>
-        <Stepper activeStep={activeStep} orientation="vertical">
+      <div className='div-width-step'>
+        <Stepper activeStep={activeStep} orientation="vertical" style={{paddingTop:'3rem'}}>
               {steps.map((label, index) => {
                   const stepProps = {};
                   const labelProps = {};             
@@ -52,7 +57,7 @@ function Form() {
                   }
                   return (
                   <Step key={label} {...stepProps}>
-                      <StepLabel {...labelProps}>{label}</StepLabel>
+                      <StepLabel {...labelProps} className="style-step">{label}</StepLabel>
                   </Step>
                   );
               })}
