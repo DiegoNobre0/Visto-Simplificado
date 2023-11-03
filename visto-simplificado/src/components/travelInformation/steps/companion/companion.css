@@ -148,3 +148,40 @@
 .input-companion{
     padding-left: 3rem;
 }
+
+.button-style-companion{
+    width: 164px;
+    height: 48px;
+    border-radius: 30px;
+    background-color: #B2CAFF;
+    border: 0;
+ }
+
+ .button-style-companion-remove{
+    width: 100px;
+    height: 28px;
+    border-radius: 30px;
+    background-color: #f88b8b;
+    border: 0;
+ }
+
+ .font-text-buttom{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    color: #2F5FE3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+
+ .font-text-buttom-remove{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #e32f2f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }

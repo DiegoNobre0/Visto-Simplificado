@@ -11,7 +11,7 @@ function AnotherName () {
     }
 
     const [states, setStates] = useState([]);
-    const [selectedState, setSelectedState] = useState("");
+    const [selectedState, setSelectedState] = useState("Sim");
     const [radioRequester, setRadioRequester] = useState("");
 
     const handleChangeSelect = (event) => {
@@ -47,17 +47,20 @@ function AnotherName () {
                 <div className="div-another-padding">
                 <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="Feminino"
+                defaultValue="Sim"
                 name="radio-buttons-group"
                 className="subTitle-div-2"
-                row                                
+                row 
+                value={selectedState}         
+                onChange={handleChangeSelect}                      
                 >
-                    <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
-                    <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                
+                    <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                    <FormControlLabel value="Não" control={<Radio />} label="Não" />                                
                 </RadioGroup>
                 </div>
             </div> 
             </div>
+            {selectedState === "Sim" ? (
             <div className="div-name-padding">              
                 <div className="padding-bottom-1 div-another-padding">
                     <span className="title-header-2">Outro nome(a)<span style={{color:'red'}}>*</span></span>
@@ -81,6 +84,7 @@ function AnotherName () {
                     </div>
                 </div>
             </div>
+            ) : null}
         </div>    
   )
 }

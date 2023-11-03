@@ -19,6 +19,17 @@ const statusArray = [
     { key: "Colega de trabalho", valor: "Colega de trabalho" }
 ];
 
+const statusParent = [
+    { key: "Mãe", valor: "Mãe" },
+    { key: "Pai", valor: "Pai" },
+    { key: "Tio", valor: "Tio" },
+    { key: "Irmã(o)", valor: "Irmã(o)" },
+    { key: "Amigo", valor: "Amigo" },
+    { key: "Chefe", valor: "Chefe" },
+    { key: "Colega de trabalho", valor: "Colega de trabalho" },
+    { key: "Desconhecido", valor: "Desconhecido" }
+];
+
 function Payer() {
     const getStates = async () => {
         const response = await statesBrazilianService.getStates();
@@ -28,9 +39,15 @@ function Payer() {
     const [states, setStates] = useState([]);
     const [radioRequester, setRadioRequester] = useState("Eu");
     const [selectedPayer, setSelectedPayer] = useState("");
+    const [selectedState, setSelectedState] = useState("");
+
 
     const handleChangeSelect = (event) => {
         setSelectedPayer(event.target.value);
+    };
+
+    const handleChangeSelectedState = (event) => {
+        setSelectedState(event.target.value);
     };
 
     const handleChangeRequester = (event) => {
@@ -57,7 +74,7 @@ function Payer() {
                 </div>
                 <div className="padding-radio-marital">
                     <Select
-                        className="style-select-initial input-style-initial"
+                        className="input-style-payer"
                         value={selectedPayer}
                         onChange={handleChangeSelect}
                     >
@@ -72,7 +89,7 @@ function Payer() {
             {selectedPayer != "Eu" && selectedPayer != "Empresa/Organização" ? (
                 <div>
                     <div className="div-marital-padding">
-                        <div className="div-2-inputs-work">
+                        <div className="padding-payer">
                             <div>
                                 <div style={{ paddingBottom: '0.4rem' }}>
                                     <span className="span-state">O endereço da pessoa que está pagando é o mesmo que o seu?</span>
@@ -102,7 +119,7 @@ function Payer() {
                                     <span className="span-state">Nome da pessoa<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o primeiro nome" variant="outlined" />
                                 </div>
                             </div>
                             <div>
@@ -110,7 +127,7 @@ function Payer() {
                                     <span className="span-state">Sobrenome da pessoa<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o sobrenome" variant="outlined" />
                                 </div>
                             </div>
                             <div>
@@ -118,7 +135,19 @@ function Payer() {
                                     <span className="span-state">Qual a sua relação com esta pessoa?<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                                    <Select
+                                        className="style-select-work"
+                                        labelId="select-state"
+                                        id="select-state"
+                                        value={selectedState}
+                                        onChange={handleChangeSelectedState}
+                                    >
+                                        {statusParent.map((state) => (
+                                            <MenuItem key={state.key} value={state.valor}>
+                                                {state.valor}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +157,19 @@ function Payer() {
                                     <span className="span-state">Cidade da pessoa<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                                    <Select
+                                        className="input-style-work"
+                                        labelId="select-state"
+                                        id="select-state"
+                                        value={selectedState}
+                                        onChange={handleChangeSelect}
+                                    >
+                                        {states.map((state) => (
+                                            <MenuItem key={state.id} value={state.nome}>
+                                                {state.nome}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
                                 </div>
                             </div>
                             <div>
@@ -136,15 +177,39 @@ function Payer() {
                                     <span className="span-state">Estado da pessoa<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                                    <Select
+                                        className="input-style-work"
+                                        labelId="select-state"
+                                        id="select-state"
+                                        value={selectedState}
+                                        onChange={handleChangeSelect}
+                                    >
+                                        {states.map((state) => (
+                                            <MenuItem key={state.id} value={state.nome}>
+                                                {state.nome}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
                                 </div>
                             </div>
                             <div>
                                 <div style={{ paddingBottom: '0.4rem' }}>
-                                    <span className="span-state">País?<span style={{ color: 'red' }}>*</span></span>
+                                    <span className="span-state">País<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                                    <Select
+                                        className="input-style-work"
+                                        labelId="select-state"
+                                        id="select-state"
+                                        value={selectedState}
+                                        onChange={handleChangeSelect}
+                                    >
+                                        {states.map((state) => (
+                                            <MenuItem key={state.id} value={state.nome}>
+                                                {state.nome}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +219,7 @@ function Payer() {
                                     <span className="span-state">Endereço da pessoa<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                                    <TextField id="outlined-basic" className="style-select-work" placeholder="Rua, bairro, número" variant="outlined" />
                                 </div>
                             </div>
                             <div>
@@ -183,7 +248,7 @@ function Payer() {
                                         maskChar=""
 
                                     >
-                                        {() => <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o seu primeiro nome" variant="outlined" />}
+                                        {() => <TextField id="outlined-basic" className="style-select-work" placeholder="55+ (00) 00000-0000" variant="outlined" />}
                                     </InputMask>
                                 </div>
                             </div>
@@ -192,7 +257,7 @@ function Payer() {
                                     <span className="span-state">Email da pessoa<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                                    <TextField id="outlined-basic" className="style-select-work" placeholder="email@exemplo.com" variant="outlined" />
                                 </div>
                             </div>
                         </div>
@@ -212,15 +277,15 @@ function Payer() {
                                     <span className="span-state">Nome da companhia/organização<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o primeiro nome" variant="outlined" />
                                 </div>
-                            </div>                          
+                            </div>
                             <div>
                                 <div style={{ paddingBottom: '0.4rem' }}>
                                     <span className="span-state">Qual a sua relação com esta companhia/organização?<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Empregado, prestador de serviço..." variant="outlined" />
                                 </div>
                             </div>
                         </div>
@@ -230,7 +295,19 @@ function Payer() {
                                     <span className="span-state">Cidade da companhia/organização<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                                    <Select
+                                        className="input-style-work"
+                                        labelId="select-state"
+                                        id="select-state"
+                                        value={selectedState}
+                                        onChange={handleChangeSelect}
+                                    >
+                                        {states.map((state) => (
+                                            <MenuItem key={state.id} value={state.nome}>
+                                                {state.nome}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
                                 </div>
                             </div>
                             <div>
@@ -238,7 +315,19 @@ function Payer() {
                                     <span className="span-state">Estado da companhia/organização<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                                    <Select
+                                        className="input-style-work"
+                                        labelId="select-state"
+                                        id="select-state"
+                                        value={selectedState}
+                                        onChange={handleChangeSelect}
+                                    >
+                                        {states.map((state) => (
+                                            <MenuItem key={state.id} value={state.nome}>
+                                                {state.nome}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
                                 </div>
                             </div>
                             <div>
@@ -246,7 +335,19 @@ function Payer() {
                                     <span className="span-state">País da companhia/organização?<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                                    <Select
+                                        className="input-style-work"
+                                        labelId="select-state"
+                                        id="select-state"
+                                        value={selectedState}
+                                        onChange={handleChangeSelect}
+                                    >
+                                        {states.map((state) => (
+                                            <MenuItem key={state.id} value={state.nome}>
+                                                {state.nome}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
                                 </div>
                             </div>
                         </div>
@@ -256,7 +357,7 @@ function Payer() {
                                     <span className="span-state">Endereço da companhia/organização<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                                    <TextField id="outlined-basic" className="style-select-work" placeholder="Rua, bairro, número" variant="outlined" />
                                 </div>
                             </div>
                             <div>
@@ -269,7 +370,7 @@ function Payer() {
                                         maskChar=""
 
                                     >
-                                        {() => <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o seu sobrenome" variant="outlined" />}
+                                        {() => <TextField id="outlined-basic" className="style-select-work" placeholder="00000-000" variant="outlined" />}
                                     </InputMask>
                                 </div>
                             </div>
@@ -285,7 +386,7 @@ function Payer() {
                                         maskChar=""
 
                                     >
-                                        {() => <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o seu primeiro nome" variant="outlined" />}
+                                        {() => <TextField id="outlined-basic" className="style-select-work" placeholder="55+ (00) 00000-0000" variant="outlined" />}
                                     </InputMask>
                                 </div>
                             </div>
@@ -294,7 +395,7 @@ function Payer() {
                                     <span className="span-state">Email da companhia/organização<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
-                                    <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                                    <TextField id="outlined-basic" className="style-select-work" placeholder="email@exemplo.com" variant="outlined" />
                                 </div>
                             </div>
                         </div>

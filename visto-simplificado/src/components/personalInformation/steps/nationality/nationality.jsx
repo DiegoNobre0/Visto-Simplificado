@@ -12,7 +12,7 @@ function Nationality () {
 
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState("");
-    const [radioRequester, setRadioRequester] = useState("");
+    const [radioRequester, setRadioRequester] = useState("Não");
 
     const handleChangeSelect = (event) => {
         setSelectedState(event.target.value);
@@ -130,21 +130,24 @@ function Nationality () {
                         <div className="padding-bottom-1">
                         <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="Feminino"
+                                defaultValue="Sim"
                                 name="radio-buttons-group"
                                 className="subTitle-div-2"
-                                row                                
+                                row         
+                                value={radioRequester}   
+                                onChange={handleChangeRequester}                    
                             >
-                                <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
-                                <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                
+                                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                                <FormControlLabel value="Não" control={<Radio />} label="Não" />                                
                         </RadioGroup>
                         </div>
                     </div>                
                 </div>
             </div>
+            {radioRequester === "Sim" ? (
             <div className="div-nationality-padding">
                 <div className="padding-bottom-nationality">
-                    <span className="title-header-2">Outras nacionalidades</span><br /><br />
+                    <span className="title-header-2">Outras nacionalidades</span><br />
                     <span className="subtitle-header">Caso possua outra nacionalidade ou cidadania, escolha o pais da mesma</span>
                 </div>
                 <div className="div-grid-nationality-inputs-1">
@@ -173,11 +176,12 @@ function Nationality () {
                             <span className="span-state">Número do passaporte<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="style-select-nationality-1" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <TextField id="outlined-basic" className="style-select-nationality-1" placeholder="Escreva o seu número do passaporte" variant="outlined" />
                         </div>
                     </div>
                 </div>
             </div>
+            ) : null}
         </div>    
   )
 }

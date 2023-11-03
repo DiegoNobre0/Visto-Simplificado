@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react"
 import './CNH.css'
-import {MenuItem, Select, TextField } from "@mui/material";
+import { MenuItem, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../../../services/statesBrazilianService"
-import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 
-function CNH () {
-    const getStates = async () =>{        
+function CNH() {
+    const getStates = async () => {
         const response = await statesBrazilianService.getStates();
-        setStates(response);        
+        setStates(response);
     }
 
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState("");
-    const [radioRequester, setRadioRequester] = useState("");
+    const [radioRequester, setRadioRequester] = useState("Sim");
 
     const handleChangeSelect = (event) => {
         setSelectedState(event.target.value);
@@ -21,80 +21,86 @@ function CNH () {
     const handleChangeRequester = (event) => {
         setRadioRequester(event.target.value);
     };
-    
+
     useEffect(() => {
         getStates();
     }, []);
 
-  return (        
+    return (
         <div className="div-margin">
             <div className="padding-bottom">
-                <div style={{display:'flex', justifyContent: 'space-between'}}>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div>
                         <span className="title-header">Carteira de motorista</span>
-                    </div>                  
+                    </div>
                 </div>
-                <hr className="hr-color"/>                
+                <hr className="hr-color" />
             </div>
             <div className="div-cng-padding">
                 <div className="div-cnh-inputs">
                     <div>
                         <div className="padding-bottom-1">
-                            <span className="title-header-2">Já teve ou tem carteira de motorista nos Estados Unidos?<span style={{color:'red'}}>*</span></span>
+                            <span className="title-header-2">Já teve ou tem carteira de motorista nos Estados Unidos?<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                        <RadioGroup
+                            <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="Feminino"
+                                defaultValue="Sim"
                                 name="radio-buttons-group"
                                 className="subTitle-div-2"
-                                row                                
+                                row
+                                value={radioRequester}
+                                onChange={handleChangeRequester}
                             >
-                                <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
-                                <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                
-                        </RadioGroup>
+                                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                                <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                            </RadioGroup>
                         </div>
-                    </div>           
-                </div>
-            </div>   
-            <div className="div-cng-padding"> 
-                <div className="div-cnh-inputs">
-                    <div>
-                        <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Qual o número da carteira nos Estados Unidos?<span style={{color:'red'}}>*</span></span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style" placeholder="Escreva o seu primeiro nome" variant="outlined" />
-                        </div>
-                    </div>          
+                    </div>
                 </div>
             </div>
-            <div className="div-cng-padding"> 
-                <div className="div-cnh-inputs">
-                    <div>
-                        <div style={{paddingBottom:'0.4rem'}}>
-                            <span className="span-state">Selecione o estado em que tirou a carteira<span style={{color:'red'}}>*</span></span>
+            {radioRequester === "Sim" ? (
+                <div>
+                    <div className="div-cng-padding">
+                        <div className="div-cnh-inputs">
+                            <div>
+                                <div style={{ paddingBottom: '0.4rem' }}>
+                                    <span className="span-state">Qual o número da carteira nos Estados Unidos?<span style={{ color: 'red' }}>*</span></span>
+                                </div>
+                                <div className="padding-bottom-1">
+                                    <TextField id="outlined-basic" className="input-style" placeholder="Escreva o número da carteira" variant="outlined" />
+                                </div>
+                            </div>
                         </div>
-                        <div className="padding-bottom-1">
-                        <Select
-                        className="style-select input-style"
-                        labelId="select-state"
-                        id="select-state"
-                        value={selectedState}
-                        onChange={handleChangeSelect}
-                        >
-                            {states.map((state) => (
-                            <MenuItem key={state.id} value={state.nome}>
-                                {state.nome}
-                            </MenuItem>
-                            ))}
-                        </Select>
                     </div>
-                    </div>          
+                    <div className="div-cng-padding">
+                        <div className="div-cnh-inputs">
+                            <div>
+                                <div style={{ paddingBottom: '0.4rem' }}>
+                                    <span className="span-state">Selecione o estado em que tirou a carteira<span style={{ color: 'red' }}>*</span></span>
+                                </div>
+                                <div className="padding-bottom-1">
+                                    <Select
+                                        className="style-select input-style"
+                                        labelId="select-state"
+                                        id="select-state"
+                                        value={selectedState}
+                                        onChange={handleChangeSelect}
+                                    >
+                                        {states.map((state) => (
+                                            <MenuItem key={state.id} value={state.nome}>
+                                                {state.nome}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>           
-        </div>    
-  )
+            ) : null}
+        </div>
+    )
 }
 
 export default CNH

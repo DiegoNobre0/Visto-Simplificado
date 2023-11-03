@@ -15,8 +15,7 @@ function AddressDelivery (props) {
       return skipped.has(step);
     };
   
-    const handleNext = () => {    
-      debugger  
+    const handleNext = () => { 
       let newSkipped = skipped;
       if (isStepSkipped(activeStep)) {
         newSkipped = new Set(newSkipped.values());
@@ -50,8 +49,9 @@ function AddressDelivery (props) {
   
 
     const allComponents = [
-        <InformationResidence key="informationResidence" onStatusChange={handleStatusChange}/>,
-        <Adress key="adress"/>,      
+        <Adress key="adress" onStatusChange={handleStatusChange}/>,  
+        <InformationResidence key="informationResidence"/>,
+            
     ];
 
   return (        

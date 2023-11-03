@@ -15,7 +15,7 @@ function InitialInformation() {
 
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState("");
-    const [radioRequester, setRadioRequester] = useState("");
+    const [radioRequester, setRadioRequester] = useState("Apenas para mim");
 
     const handleChangeSelect = (event) => {
         setSelectedState(event.target.value);
@@ -23,6 +23,7 @@ function InitialInformation() {
 
     const handleChangeRequester = (event) => {
         setRadioRequester(event.target.value);
+        localStorage.setItem("tipoForm", event.target.value);
     };
 
     useEffect(() => {
@@ -73,7 +74,7 @@ function InitialInformation() {
                             <div>
                                 <RadioGroup
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="female"
+                                    defaultValue="Apenas para mim"
                                     name="radio-buttons-group"
                                     className="subTitle-div-2"
                                     value={radioRequester}

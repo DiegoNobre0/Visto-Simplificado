@@ -16,12 +16,18 @@ function InformationResidence(props) {
 
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState("Não");
-    
+    const [selectedState2, setSelectedState2] = useState("Sim");
 
-    const handleChangeSelect = (event) => {        
+
+    const handleChangeSelect = (event) => {
         setSelectedState(event.target.value);
         props.onStatusChange(event.target.value);
-    };  
+    };
+
+    const handleChangeSelect2 = (event) => {
+        setSelectedState2(event.target.value);
+       
+    };
 
     useEffect(() => {
         getStates();
@@ -45,7 +51,7 @@ function InformationResidence(props) {
                             <span className="span-state">Endereço da sua residência<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                            <TextField id="outlined-basic" className="style-select-work" placeholder="Bairro, rua e número" variant="outlined" />
                         </div>
                     </div>
                     <div>
@@ -53,7 +59,7 @@ function InformationResidence(props) {
                             <span className="span-state">Complemento<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <TextField id="outlined-basic" className="style-select-work" placeholder="Preencha um complemento" variant="outlined" />
                         </div>
                     </div>
                 </div>
@@ -63,7 +69,17 @@ function InformationResidence(props) {
                             <span className="span-state">País da sua residência<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                            <Select
+                                className="style-select-work"
+                                labelId="select-state"
+                                id="select-state"                                
+                            >
+                                {states.map((state) => (
+                                    <MenuItem key={state.id} value={state.nome}>
+                                        {state.nome}
+                                    </MenuItem>
+                                ))}
+                            </Select>
                         </div>
                     </div>
                     <div>
@@ -76,7 +92,7 @@ function InformationResidence(props) {
                                 maskChar=""
 
                             >
-                                {() => <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu sobrenome" variant="outlined" />}
+                                {() => <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o CEP" variant="outlined" />}
                             </InputMask>
                         </div>
                     </div>
@@ -85,7 +101,7 @@ function InformationResidence(props) {
                             <span className="span-state">Cidade da sua residência<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva a cidade on você nasceu" variant="outlined" />
                         </div>
                     </div>
                 </div>
@@ -132,6 +148,8 @@ function InformationResidence(props) {
                                 name="radio-buttons-group"
                                 className="subTitle-div-2"
                                 row
+                                value={selectedState2}
+                                onChange={handleChangeSelect2}
                             >
                                 <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
                                 <FormControlLabel value="Não" control={<Radio />} label="Não" />
@@ -139,17 +157,28 @@ function InformationResidence(props) {
                         </div>
                     </div>
                 </div>
-
+                {selectedState2 === "Sim" ? (                   
                 <div className="div-2-inputs-work">
                     <div>
                         <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">Paós da sua residencia<span style={{ color: 'red' }}>*</span></span>
+                            <span className="span-state">País da sua residencia<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="style-select-residence" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                            <Select
+                                className="style-select-residence"
+                                labelId="select-state"
+                                id="select-state"
+                            >
+                                {states.map((state) => (
+                                    <MenuItem key={state.id} value={state.nome}>
+                                        {state.nome}
+                                    </MenuItem>
+                                ))}
+                            </Select>
                         </div>
                     </div>
                 </div>
+                ) : null}
             </div>
         </div>
     )

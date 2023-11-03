@@ -51,7 +51,7 @@ function Divorced() {
                             <span className="span-state">Nome do ex-companheiro(a)<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style-marital" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                            <TextField id="outlined-basic" className="input-style-marital" placeholder="Escreva o primeiro nome" variant="outlined" />
                         </div>
                     </div>
                     <div>
@@ -59,7 +59,7 @@ function Divorced() {
                             <span className="span-state">Sobrenome do ex-companheiro(a)<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style-marital" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <TextField id="outlined-basic" className="input-style-marital" placeholder="Escreva o sobrenome" variant="outlined" />
                         </div>
                     </div>
                     <div>

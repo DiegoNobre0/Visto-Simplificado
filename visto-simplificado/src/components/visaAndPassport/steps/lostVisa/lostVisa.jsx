@@ -63,11 +63,11 @@ function LostVisa() {
                 <div className="padding-visa">
                     <div>
                         <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">Motivo da revogação do visto<span style={{ color: 'red' }}>*</span></span>
+                            <span className="span-state">Data em que o visto foi perdido<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker format="DD/MM/YYYY" className="style-inpup-lost" />
+                                <DatePicker format="DD/MM/YYYY" className="style-input-lost" />
                             </LocalizationProvider>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './initialInformation.css';
-import {MenuItem, Select, TextField } from "@mui/material";
+import {InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../../../services/statesBrazilianService"
 import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -24,7 +24,7 @@ function InitialInformation (props) {
     }
 
     const [states, setStates] = useState([]);
-    const [selectedMaritalStatus, setSelectedMaritalStatus] = useState("");
+    const [selectedMaritalStatus, setSelectedMaritalStatus] = useState("teste");
     const [radioRequester, setRadioRequester] = useState("");
 
     const handleChangeSelect = (event) => { 
@@ -74,11 +74,13 @@ function InitialInformation (props) {
                             <span className="span-state">Estado Civil<span style={{color:'red'}}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
+                        
                         <Select
                         className="style-select-initial input-style-initial"                        
                         value={selectedMaritalStatus}
                         onChange={handleChangeSelect}
                         >
+                            
                           {statusArray.map((status) => (
                             <MenuItem key={status.key} value={status.valor}>
                             {status.valor}

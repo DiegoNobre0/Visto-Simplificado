@@ -47,8 +47,6 @@ function AdditionalInformation (props) {
   const handleStatusChange = (status) => {
     setSelectedStatus(status);  
   };
-   
-  
 
     const allComponents = [
         <Work key="work"/>,

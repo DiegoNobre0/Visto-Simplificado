@@ -28,7 +28,7 @@ function VisaAndPassport (props) {
     
       
       setSkipped(newSkipped);
-      console.log(activeStep)
+      
       if(activeStep === 3){
         props.onVisaAndPassaportChange();
       }

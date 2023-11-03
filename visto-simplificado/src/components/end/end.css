@@ -32,7 +32,7 @@
     line-height: 60px;
 }
 
-.font-size-title-2{
+.font-size-title-end{
     font-size: 16px;
     font-weight: 400;
     line-height: 19.5px;
@@ -84,13 +84,28 @@
    border-radius: 8px;
    background-color: #2F5FE3;
    border: 0;
-   
 }
+
+.button-style-end-2{
+    width: 166px;
+    height: 48px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #2F5FE3;
+ }
 
 .font-button{
     font-size: 16px;
     font-weight: 600;
     line-height: 19.4px;
     color: white;    
+}
+
+
+.font-button-2{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.4px;
+    color: #243A72;    
 }
 

@@ -36,18 +36,24 @@ function Form() {
       setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };  
 
+    const addParents = () => {  
+      debugger  
+      setActiveStep(0);
+    };  
+
+
     const allComponents = [
         <PersonalInformation key="personalInfo" onPersonalChange={handleNext}/>,
         <AdditionalInformation key="additionalInfo" onAdditionalChange={handleNext}/>,
         <AddressDelivery key="addressDelivery" onAddressChange={handleNext}/>,
         <TravelInformation key="travelInformation" onTravelInformationChange={handleNext}/>,
         <VisaAndPassport key="visaAndPassport" onVisaAndPassaportChange={handleNext}/>,
-        <End key="end"/>
+        <End onEndChange={addParents} key="end"/>
     ];
 
   return (
     <div className='div-flex'>
-      <div className='div-width-step'>
+      <div className='div-width-step' style={{display: activeStep === 5? 'none' : ''}}>
         <Stepper activeStep={activeStep} orientation="vertical" style={{paddingTop:'3rem'}}>
               {steps.map((label, index) => {
                   const stepProps = {};

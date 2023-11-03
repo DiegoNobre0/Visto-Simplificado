@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react"
 import './travelInformations.css'
 import { MenuItem, Select, TextField } from "@mui/material";
-// import statesBrazilianService from "../../../services/statesBrazilianService";
+import statesBrazilianService from "../../../../services/statesBrazilianService";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import InputMask from 'react-input-mask';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 function TravelInformations() {
-    // const getStates = async () =>{        
-    //     const response = await statesBrazilianService.getStates();
-    //     setStates(response);        
-    // }
+    const getStates = async () => {
+        const response = await statesBrazilianService.getStates();
+        setStates(response);
+    }
 
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState("");
@@ -25,9 +25,9 @@ function TravelInformations() {
         setRadioRequester(event.target.value);
     };
 
-    // useEffect(() => {
-    //     getStates();
-    // }, []);
+    useEffect(() => {
+        getStates();
+    }, []);
 
     return (
         <div className="div-margin">
@@ -54,10 +54,10 @@ function TravelInformations() {
                     </div>
                     <div>
                         <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">Duração da viagem <span style={{ color: 'red' }}>(em dias)</span></span>
+                            <span className="span-state">Duração da viagem <span style={{ color: '#2F5FE3' }}>(em dias)</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="style-input-2-travelinfo" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <TextField id="outlined-basic" className="style-input-2-travelinfo" placeholder="Ex: 5" variant="outlined" />
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ function TravelInformations() {
                             <span className="span-state">Endereço da possível hospedagem<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                            <TextField id="outlined-basic" className="input-style-work" placeholder="Bairro, rua e número" variant="outlined" />
                         </div>
                     </div>
                     <div>
@@ -75,7 +75,17 @@ function TravelInformations() {
                             <span className="span-state">Estado da possível hospedagem<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <Select
+                                className="input-style-work"
+                                labelId="select-state"
+                                id="select-state"
+                            >
+                                {states.map((state) => (
+                                    <MenuItem key={state.id} value={state.nome}>
+                                        {state.nome}
+                                    </MenuItem>
+                                ))}
+                            </Select>
                         </div>
                     </div>
                     <div>
@@ -83,7 +93,18 @@ function TravelInformations() {
                             <span className="span-state">Cidade da possível hospedagem<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <Select
+                                className="input-style-work"
+                                labelId="select-state"
+                                id="select-state"
+
+                            >
+                                {states.map((state) => (
+                                    <MenuItem key={state.id} value={state.nome}>
+                                        {state.nome}
+                                    </MenuItem>
+                                ))}
+                            </Select>
                         </div>
                     </div>
                 </div>
@@ -98,17 +119,9 @@ function TravelInformations() {
                                 maskChar=""
 
                             >
-                                {() => <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o seu sobrenome" variant="outlined" />}
+                                {() => <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o CEP" variant="outlined" />}
                             </InputMask>
 
-                        </div>
-                    </div>
-                    <div>
-                        <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">Endereço da possível hospedagem<span style={{ color: 'red' }}>*</span></span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                         </div>
                     </div>
                 </div>

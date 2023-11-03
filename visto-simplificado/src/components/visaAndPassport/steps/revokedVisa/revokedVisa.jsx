@@ -14,7 +14,7 @@ function RevokedVisa() {
     }
 
     const [states, setStates] = useState([]);
-    const [selectedState, setSelectedState] = useState("");
+    const [selectedState, setSelectedState] = useState("Sim");
     const [radioRequester, setRadioRequester] = useState("");
 
     const handleChangeSelect = (event) => {
@@ -50,12 +50,15 @@ function RevokedVisa() {
                         name="radio-buttons-group"
                         className="subTitle-div-2"
                         row
+                        value={selectedState}
+                        onChange={handleChangeSelect}
                     >
                         <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
                         <FormControlLabel value="Não" control={<Radio />} label="Não" />
                     </RadioGroup>
                 </div>
             </div>
+            {selectedState === "Sim" ? (
             <div className="div-marital-padding">
                 <div className="padding-visa">
                     <div>
@@ -68,6 +71,7 @@ function RevokedVisa() {
                     </div>
                 </div>
             </div>
+            ) : null}
         </div>
     )
 }

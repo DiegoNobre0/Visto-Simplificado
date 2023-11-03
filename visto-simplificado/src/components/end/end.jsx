@@ -1,10 +1,18 @@
 import './end.css'
-import imageHome1 from '../../assets/imagem-1.png'
+import imageHome6 from '../../assets/imagem-6.png'
 
 import { Link } from 'react-router-dom';
 
-function End() {
+function End(props) {
+  const storedData = localStorage.getItem("userData");
 
+  const addFamily = () =>{   
+    props.onEndChange();
+  }
+
+  const deleteLocalStorage = () => {
+    localStorage.removeItem("userData");
+  }
   return (
     <>
       <div>
@@ -13,21 +21,39 @@ function End() {
             <div className='text-align font-size-title'>
               <span className='font-color'>Parabéns</span>             
             </div>
-            <div className='text-align font-size-title-2'>
+            <div className='text-align font-size-title-end'>
               <br /><span className='font-color-3'>
               Você esta mais perto de ter o seu visto, em breve entraremos em contato para trazer novidades!
               </span>
             </div>
+            {storedData === "Apenas para mim"? (
             <div className='padding-button-end'>
               <Link to="/">
-                <button type='button' className='button-style-end'>
+                <button type='button' className='button-style-end' onClick={deleteLocalStorage}>
                   <span className='font-button'>Voltar para a home</span>
                 </button>
               </Link>
             </div>
+            ):(
+            <div style={{display:'flex'}}>
+              <div className='padding-button-end' style={{paddingRight:'1rem'}}>
+                <Link to="/">
+                  <button type='button' className='button-style-end-2' onClick={deleteLocalStorage}>
+                    <span className='font-button-2'>Voltar para a home</span>
+                  </button>
+                </Link>
+              </div>
+
+              <div className='padding-button-end'>                
+                  <button type='button' className='button-style-end' onClick={addFamily}>
+                    <span className='font-button'>Próximo familiar</span>
+                  </button>                
+              </div>
+            </div>
+            )}
           </div>
           <div>
-            <img src={imageHome1} alt="" />
+            <img src={imageHome6} alt="" />
           </div>
         </div>
       </div>

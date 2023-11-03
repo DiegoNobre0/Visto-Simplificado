@@ -1,14 +1,60 @@
 import React, { useEffect, useState } from "react"
 import './charity.css'
-import {MenuItem, Select, TextField } from "@mui/material";
+import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../../../services/statesBrazilianService"
-import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
 
-function Charity () {
-    const getStates = async () =>{        
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+        },
+    },
+};
+
+const names = [
+    'Oliver Hansen',
+    'Van Henry',
+    'April Tucker',
+    'Ralph Hubbard',
+    'Omar Alexander',
+    'Carlos Abbott',
+    'Miriam Wagner',
+    'Bradley Wilkerson',
+    'Virginia Andrews',
+    'Kelly Snyder',
+];
+
+function getStyles(name, personName, theme) {
+    return {
+        fontWeight:
+            personName.indexOf(name) === -1
+                ? theme.typography.fontWeightRegular
+                : theme.typography.fontWeightMedium,
+    };
+}
+
+function Charity() {
+    const getStates = async () => {
         const response = await statesBrazilianService.getStates();
-        setStates(response);        
+        setStates(response);
     }
+
+    const theme = useTheme();
+    const [personName, setPersonName] = React.useState([]);
+
+    const handleChange = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setPersonName(
+            typeof value === 'string' ? value.split(',') : value,
+        );
+    };
 
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState("");
@@ -21,55 +67,72 @@ function Charity () {
     const handleChangeRequester = (event) => {
         setRadioRequester(event.target.value);
     };
-    
+
     useEffect(() => {
         getStates();
     }, []);
 
-  return (        
-    <div className="div-margin">
-    <div className="padding-bottom">
-        <div style={{display:'flex', justifyContent: 'space-between'}}>
-            <div>
-                <span className="title-header">Informações adicionais</span>
+    return (
+        <div className="div-margin">
+            <div className="padding-bottom">
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <div>
+                        <span className="title-header">Informações adicionais</span>
+                    </div>
+                    <div>
+                        <span className="title-header-1">Caridade</span>
+                    </div>
+                </div>
+                <hr className="hr-color" />
             </div>
-            <div>
-                <span className="title-header-1">Caridade</span>
+            <div className="div-country-padding">
+                <div className="padding-bottom-title-input-country">
+                    <span className="title-header-2">Você participa de alguma organização de caridade?<span style={{ color: 'red' }}>*</span></span>
+                </div>
+                <div className="padding-radio-marital">
+                    <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="Sim"
+                        name="radio-buttons-group"
+                        className="subTitle-div-2"
+                        row
+                    >
+                        <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                        <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                    </RadioGroup>
+                </div>
+            </div>
+            <div className="div-country-padding">
+                <div className="padding-charity">
+                    <div>
+                        <div style={{ paddingBottom: '0.4rem' }}>
+                            <span className="span-state">Idiomas que você fala<span style={{ color: 'red' }}>*</span></span>
+                        </div>
+                        <div className="padding-bottom-1">
+                            <Select
+                                className="style-select-travels"
+                                multiple
+                                value={personName}
+                                onChange={handleChange}
+                                input={<OutlinedInput />}
+                                MenuProps={MenuProps}
+                            >
+                                {names.map((name) => (
+                                    <MenuItem
+                                        key={name}
+                                        value={name}
+                                        style={getStyles(name, personName, theme)}
+                                    >
+                                        {name}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <hr className="hr-color"/>                
-    </div>
-    <div className="div-country-padding">
-        <div className="padding-bottom-title-input-country">
-            <span className="title-header-2">Você participa de alguma organização de caridade?<span style={{color:'red'}}>*</span></span>
-        </div>
-        <div className="padding-radio-marital">
-            <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="Sim"
-            name="radio-buttons-group"
-            className="subTitle-div-2"
-            row                                
-            >
-                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
-                <FormControlLabel value="Não" control={<Radio />} label="Não" />                                
-            </RadioGroup>
-        </div>                         
-    </div>
-    <div className="div-country-padding">
-        <div className="div-2-inputs-work">
-                <div>
-                    <div style={{paddingBottom:'0.4rem'}}>
-                        <span className="span-state">Idiomas que você fala<span style={{color:'red'}}>*</span></span>
-                    </div>
-                    <div className="padding-bottom-1">
-                        <TextField id="outlined-basic" className="style-select-charity" placeholder="Escreva o seu primeiro nome" variant="outlined" />
-                    </div>
-                </div>           
-        </div>                        
-    </div>    
-</div>    
-  )
+    )
 }
 
 export default Charity

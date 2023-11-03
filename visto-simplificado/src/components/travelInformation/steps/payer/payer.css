@@ -122,6 +122,11 @@
     width: 98%;
 }
 
+.input-style-payer{
+    background-color: #ffff;
+    width: 60%;
+}
+
 .div-1-inputs-marital{
     display: grid;   
     grid-template-columns: 33% 33% 33%;
@@ -140,7 +145,7 @@
     padding-left: 3rem;
 }
 
-.padding-radio-marital{
+.padding-payer{
     padding-left: 3rem;
 }
 
