@@ -28,6 +28,7 @@ function InitialInformation() {
 
     useEffect(() => {
         getStates();
+        localStorage.setItem("tipoForm", "Apenas para mim");
     }, []);
 
     return (
@@ -87,9 +88,11 @@ function InitialInformation() {
                         </div>
                     </div>
                 </div>
+                {radioRequester === "Para mim e minha familia" ? (
                 <div className="style-observation font-style-observation">
                     <span>* Caso esteja solicitando para você e sua família, a categoria "família" é reservada <b>APENAS PARA MEMBROS QUE RESIDEM NO MESMO ENDEREÇO QUE VOCÊ.</b> Se outros membros da sua família residem em endereços diferentes, eles devem apresentar solicitações de visto separadas.</span>                    
                 </div>
+                ): null}
 
                 <div className='padding-top'>
                     <Link to="/form">

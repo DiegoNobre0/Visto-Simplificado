@@ -2,17 +2,25 @@ import './end.css'
 import imageHome6 from '../../assets/imagem-6.png'
 
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function End(props) {
-  const storedData = localStorage.getItem("userData");
+  const [storedData, setStoredData] = useState('')
 
   const addFamily = () =>{   
     props.onEndChange();
   }
 
   const deleteLocalStorage = () => {
-    localStorage.removeItem("userData");
+    localStorage.removeItem("tipoForm");
   }
+
+  useEffect(() => {    
+    debugger
+    const data = localStorage.getItem("tipoForm");
+    setStoredData(data);
+}, []);
+
   return (
     <>
       <div>

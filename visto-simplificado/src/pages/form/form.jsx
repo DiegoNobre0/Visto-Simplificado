@@ -12,6 +12,8 @@ import './form.css'
 
 const steps = ['Informações pessoais', 'Informações adicionais', 'Endereço e residência','Informações sobre a viagem', 'Visto ou passaporte', 'Fim'];
 
+
+
 function Form() {
     const [activeStep, setActiveStep] = useState(0);
     const [skipped, setSkipped] = useState(new Set()); 
@@ -63,7 +65,7 @@ function Form() {
                   }
                   return (
                   <Step key={label} {...stepProps}>
-                      <StepLabel {...labelProps} className="style-step">{label}</StepLabel>
+                      <StepLabel {...labelProps} className="style-step-1">{label}</StepLabel>
                   </Step>
                   );
               })}
