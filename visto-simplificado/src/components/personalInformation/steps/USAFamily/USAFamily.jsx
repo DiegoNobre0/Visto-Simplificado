@@ -3,13 +3,10 @@ import './USAFamily.css'
 import { MenuItem, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../../../services/statesBrazilianService"
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import relativeRelationship from '../../../../datas/relative_relationship'
+import relativeUSStatus from '../../../../datas/relative_us_status'
 
 function USAFamily() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
-    }
-
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState("Sim");
     const [radioRequester, setRadioRequester] = useState("");
@@ -23,7 +20,7 @@ function USAFamily() {
     };
 
     useEffect(() => {
-        getStates();
+        
     }, []);
 
     return (
@@ -64,7 +61,7 @@ function USAFamily() {
                                     <span className="span-state">Nome do familiar nos Estados Unidos<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div >
-                                    <TextField id="outlined-basic" className="input-style-usa" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                                    <TextField id="outlined-basic" className="input-style-usa" placeholder="Escreva o primeiro nome" variant="outlined" />
                                 </div>
                             </div>
                             <div>
@@ -72,7 +69,7 @@ function USAFamily() {
                                     <span className="span-state">Sobrenome do familiar nos Estados Unidos<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div >
-                                    <TextField id="outlined-basic" className="input-style-usa" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                                    <TextField id="outlined-basic" className="input-style-usa" placeholder="Escreva o sobrenome" variant="outlined" />
                                 </div>
                             </div>
                         </div>
@@ -82,7 +79,17 @@ function USAFamily() {
                                     <span className="span-state">Qual a sua relação com o familiar nos Estados Unidos?<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div >
-                                    <TextField id="outlined-basic" className="input-style-usa" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                                    <Select
+                                        className="style-select-initial input-style-initial"
+                                        placeholder="teste"
+
+                                    >
+                                        {relativeRelationship.map((status) => (
+                                            <MenuItem key={status.key} value={status.key}>
+                                                {status.value}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
                                 </div>
                             </div>
                             <div>
@@ -90,7 +97,17 @@ function USAFamily() {
                                     <span className="span-state">Qual a sua situação com o familiar nos Estados Unidos?<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div >
-                                    <TextField id="outlined-basic" className="input-style-usa" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                                    <Select
+                                        className="style-select-initial input-style-initial"
+                                        placeholder="teste"
+
+                                    >
+                                        {relativeUSStatus.map((status) => (
+                                            <MenuItem key={status.key} value={status.key}>
+                                                {status.value}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
                                 </div>
                             </div>
                         </div>

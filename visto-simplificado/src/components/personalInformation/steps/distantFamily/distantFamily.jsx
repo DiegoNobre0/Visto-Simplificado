@@ -3,6 +3,7 @@ import './distantFamily.css'
 import { MenuItem, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../../../services/statesBrazilianService"
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import PrimaryOccupation from "../../../../datas/primary_occupation";
 
 
 const statusArray = [
@@ -116,9 +117,9 @@ function DistantFamily() {
                                                     value={selectedState}
                                                     onChange={handleChangeSelect}
                                                 >
-                                                    {statusArray.map((state) => (
-                                                        <MenuItem key={state.key} value={state.valor}>
-                                                            {state.valor}
+                                                    {PrimaryOccupation.map((state) => (
+                                                        <MenuItem key={state.key} value={state.key}>
+                                                            {state.value}
                                                         </MenuItem>
                                                     ))}
                                                 </Select>
@@ -142,9 +143,9 @@ function DistantFamily() {
                                                 <TextField id="outlined-basic" className="input-style-distant" placeholder="Escreva o endereço" variant="outlined" />
                                             </div>
                                         </div>
-                                        <div >
+                                        <div>
                                             <div style={{ paddingBottom: '0.4rem' }} >
-                                                <span className="span-state">Cidade da instituição/empresa<span style={{ color: 'red' }}>*</span></span>
+                                                <span className="span-state">Estado da instituição/empresa<span style={{ color: 'red' }}>*</span></span>
                                             </div>
                                             <div >
                                                 <Select
@@ -162,9 +163,9 @@ function DistantFamily() {
                                                 </Select>
                                             </div>
                                         </div>
-                                        <div>
+                                        <div >
                                             <div style={{ paddingBottom: '0.4rem' }} >
-                                                <span className="span-state">Estado da instituição/empresa<span style={{ color: 'red' }}>*</span></span>
+                                                <span className="span-state">Cidade da instituição/empresa<span style={{ color: 'red' }}>*</span></span>
                                             </div>
                                             <div >
                                                 <Select

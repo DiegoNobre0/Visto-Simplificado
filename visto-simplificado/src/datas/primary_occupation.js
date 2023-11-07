@@ -1,4 +1,4 @@
-const primaryOccupation = [
+const PrimaryOccupation = [
     {
       key: "A",
       value: "Agricultura"
@@ -89,5 +89,5 @@ const primaryOccupation = [
     }
   ];
   
-  export default primaryOccupation;
+  export default PrimaryOccupation;
   

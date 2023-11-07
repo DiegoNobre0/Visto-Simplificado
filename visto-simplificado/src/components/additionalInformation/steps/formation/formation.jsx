@@ -186,7 +186,7 @@ function Formation() {
                                     maskChar=""
 
                                 >
-                                    {() => <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o CEP" variant="outlined" />}
+                                    {() => <TextField id="outlined-basic" className="style-select-work" placeholder="00000-000" variant="outlined" />}
                                 </InputMask>
                             </div>
                         </div>
@@ -201,7 +201,7 @@ function Formation() {
                                     mask="55+ (99) 99999-9999"
                                     maskChar=""
                                 >
-                                    {() => <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o telefone" variant="outlined" />}
+                                    {() => <TextField id="outlined-basic" className="style-select-work" placeholder="55+ (00) 00000-0000" variant="outlined" />}
                                 </InputMask>
                             </div>
                         </div>
@@ -210,7 +210,7 @@ function Formation() {
                                 <span className="span-state">Email da companhia/organização<span style={{ color: 'red' }}>*</span></span>
                             </div>
                             <div className="padding-bottom-1">
-                                <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o email" variant="outlined" />
+                                <TextField id="outlined-basic" className="style-select-work" placeholder="email@exemplo.com" variant="outlined" />
                             </div>
                         </div>
                     </div>

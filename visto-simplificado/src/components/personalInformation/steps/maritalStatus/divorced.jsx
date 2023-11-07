@@ -5,27 +5,29 @@ import statesBrazilianService from "../../../../services/statesBrazilianService"
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import Countries from "../../../../datas/countries";
 
 function Divorced() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
-    }
+    const [nationality, setNationality] = useState("");
+    const [countryBirth, setCountryBirth] = useState("")
+    const [countrySeparation, setCountrySeparation] = useState("")
+    const [typeSeparation, setTypeSeparation] = useState("C");
 
-    const [states, setStates] = useState([]);
-    const [selectedState, setSelectedState] = useState("");
-    const [radioRequester, setRadioRequester] = useState("");
-
-    const handleChangeSelect = (event) => {
-        setSelectedState(event.target.value);
+    const handleChangeSelectNationality = (event) => {
+        setNationality(event.target.value);
     };
-
-    const handleChangeRequester = (event) => {
-        setRadioRequester(event.target.value);
+    const handleChangeSelectCountryBirth = (event) => {
+        setCountryBirth(event.target.value);
     };
+    const handleChangeSelectCountrySeparation = (event) => {
+        setCountrySeparation(event.target.value);
+    };
+    const handleChangeTypeSeparation = (event) => {
+        setTypeSeparation(event.target.value);
+    }; 
 
     useEffect(() => {
-        getStates();
+        
     }, []);
 
     return (
@@ -81,19 +83,19 @@ function Divorced() {
                 <div className="div-2-inputs-marital">
                     <div>
                         <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">Nacionalidade do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
+                            <span className="span-state">Nacionalidade do ex-companheiro(a)<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                             <Select
                                 className="style-select-marital"
                                 labelId="select-state"
                                 id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
+                                value={nationality}
+                                onChange={handleChangeSelectNationality}
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {Countries.map((state) => (
+                                    <MenuItem key={state.key} value={state.key}>
+                                        {state.value}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -101,19 +103,19 @@ function Divorced() {
                     </div>
                     <div>
                         <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">País de nascimento do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
+                            <span className="span-state">País de nascimento do ex-companheiro(a)<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                             <Select
                                 className="style-select-marital"
                                 labelId="select-state"
                                 id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
+                                value={countryBirth}
+                                onChange={handleChangeSelectCountryBirth}
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {Countries.map((state) => (
+                                    <MenuItem key={state.key} value={state.key}>
+                                        {state.value}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -155,15 +157,16 @@ function Divorced() {
                     <div >
                         <RadioGroup
                             aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="Consesual"
+                            defaultValue="C"
                             name="radio-buttons-group"
-
                             row
+                            value={typeSeparation}
+                            onChange={handleChangeTypeSeparation}
                         >
-                            <FormControlLabel value="Consesual" control={<Radio />} label="Consesual" />
-                            <FormControlLabel value="Litigioso" control={<Radio />} label="Litigioso" />
-                            <FormControlLabel value="Juducial" control={<Radio />} label="Judicial" />
-                            <FormControlLabel value="Extra-judicial" control={<Radio />} label="Extra-judicial" />
+                            <FormControlLabel value="C" control={<Radio />} label="Consesual" />
+                            <FormControlLabel value="L" control={<Radio />} label="Litigioso" />
+                            <FormControlLabel value="J" control={<Radio />} label="Judicial" />
+                            <FormControlLabel value="E" control={<Radio />} label="Extra-judicial" />
                         </RadioGroup>
                     </div>
                 </div>
@@ -176,12 +179,12 @@ function Divorced() {
                             className="style-input-state"
                             labelId="select-state"
                             id="select-state"
-                            value={selectedState}
-                            onChange={handleChangeSelect}
+                            value={countrySeparation}
+                            onChange={handleChangeSelectCountrySeparation}
                         >
-                            {states.map((state) => (
-                                <MenuItem key={state.id} value={state.nome}>
-                                    {state.nome}
+                            {Countries.map((state) => (
+                                <MenuItem key={state.key} value={state.key}>
+                                    {state.value}
                                 </MenuItem>
                             ))}
                         </Select>

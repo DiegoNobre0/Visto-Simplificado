@@ -1,29 +1,24 @@
 import React, { useEffect, useState } from "react"
 import './maritalStatus.css'
 import { MenuItem, Select, TextField } from "@mui/material";
-import statesBrazilianService from "../../../../services/statesBrazilianService"
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import Countries from "../../../../datas/countries";
 
 function Widow() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
-    }
+    const [nationality, setNationality] = useState("");
+    const [countryBirth, setCountryBirth] = useState("");
+    const [cityBirth, setCityBirth] = useState("");
 
-    const [states, setStates] = useState([]);
-    const [selectedState, setSelectedState] = useState("");
-    const [radioRequester, setRadioRequester] = useState("");
-
-    const handleChangeSelect = (event) => {
-        setSelectedState(event.target.value);
+    const handleChangeSelectNationality = (event) => {
+        setNationality(event.target.value);
     };
-
-    const handleChangeRequester = (event) => {
-        setRadioRequester(event.target.value);
+    const handleChangeSelectCountryBirth = (event) => {
+        setCountryBirth(event.target.value);
     };
+    const handleChangeSelectCityBirth = (event) => {
+        setCityBirth(event.target.value);
+    };   
 
-    useEffect(() => {
-        getStates();
+    useEffect(() => {   
     }, []);
 
     return (
@@ -69,7 +64,19 @@ function Widow() {
                             <span className="span-state">Cidade de nascimento do ex-cônjugue<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style-marital" placeholder="Escreva a cidade" variant="outlined" />
+                            <Select
+                                className="style-input-2-marital"
+                                labelId="select-state"
+                                id="select-state"
+                                value={cityBirth}
+                                onChange={handleChangeSelectCityBirth}
+                            >
+                                {Countries.map((state) => (
+                                    <MenuItem key={state.key} value={state.key}>
+                                        {state.value}
+                                    </MenuItem>
+                                ))}
+                            </Select>
                         </div>
                     </div>
                     <div>
@@ -81,12 +88,12 @@ function Widow() {
                                 className="style-input-2-marital"
                                 labelId="select-state"
                                 id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
+                                value={countryBirth}
+                                onChange={handleChangeSelectCountryBirth}
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {Countries.map((state) => (
+                                    <MenuItem key={state.key} value={state.key}>
+                                        {state.value}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -101,12 +108,12 @@ function Widow() {
                                 className="style-input-2-marital"
                                 labelId="select-state"
                                 id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
+                                value={nationality}
+                                onChange={handleChangeSelectNationality}
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {Countries.map((state) => (
+                                    <MenuItem key={state.key} value={state.key}>
+                                        {state.value}
                                     </MenuItem>
                                 ))}
                             </Select>

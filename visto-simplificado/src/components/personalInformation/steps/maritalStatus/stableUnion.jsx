@@ -5,27 +5,25 @@ import statesBrazilianService from "../../../../services/statesBrazilianService"
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import Countries from "../../../../datas/countries";
+import InputMask from 'react-input-mask';
 
 function StableUnion() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
-    }
+    const [nationality, setNationality] = useState("");
+    const [countryBirth, setCountryBirth] = useState("");
+    const [partnerAdress, setPartnerAdress] = useState("Sim");
 
-    const [states, setStates] = useState([]);
-    const [selectedState, setSelectedState] = useState("");
-    const [radioRequester, setRadioRequester] = useState("");
-
-    const handleChangeSelect = (event) => {
-        setSelectedState(event.target.value);
+    const handleChangeSelectNationality = (event) => {
+        setNationality(event.target.value);
     };
-
-    const handleChangeRequester = (event) => {
-        setRadioRequester(event.target.value);
+    const handleChangeSelectCountryBirth = (event) => {
+        setCountryBirth(event.target.value);
+    };
+    const handleChangeSelectPartnerAdress = (event) => {
+        setPartnerAdress(event.target.value);
     };
 
     useEffect(() => {
-        getStates();
     }, []);
 
     return (
@@ -88,12 +86,12 @@ function StableUnion() {
                                 className="style-select-marital"
                                 labelId="select-state"
                                 id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
+                                value={nationality}
+                                onChange={handleChangeSelectNationality}
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {Countries.map((state) => (
+                                    <MenuItem key={state.key} value={state.key}>
+                                        {state.value}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -108,12 +106,12 @@ function StableUnion() {
                                 className="style-select-marital"
                                 labelId="select-state"
                                 id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
+                                value={countryBirth}
+                                onChange={handleChangeSelectCountryBirth}
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {Countries.map((state) => (
+                                    <MenuItem key={state.key} value={state.key}>
+                                        {state.value}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -132,12 +130,15 @@ function StableUnion() {
                         name="radio-buttons-group"
                         className="subTitle-div-2"
                         row
+                        value={partnerAdress}
+                        onChange={handleChangeSelectPartnerAdress}
                     >
                         <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
                         <FormControlLabel value="Não" control={<Radio />} label="Não" />
                     </RadioGroup>
                 </div>
             </div>
+            {partnerAdress === "Sim" ? (
             <div className="div-marital-padding">
                 <div className="padding-bottom-title-input">
                     <span className="title-header-2">Endereço do companheiro<span style={{ color: 'red' }}>*</span></span>
@@ -148,7 +149,7 @@ function StableUnion() {
                             <span className="span-state">Endereço do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="style-select-marital" placeholder="Escreva o endereço" variant="outlined" />
+                            <TextField id="outlined-basic" className="style-select-marital" placeholder="Rua, bairro, número" variant="outlined" />
                         </div>
                     </div>
                     <div>
@@ -156,7 +157,7 @@ function StableUnion() {
                             <span className="span-state">Complemento do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="style-select-marital" placeholder="Escreva o complemento" variant="outlined" />
+                            <TextField id="outlined-basic" className="style-select-marital" placeholder="Preencha um complemento" variant="outlined" />
                         </div>
                     </div>
                 </div>
@@ -167,15 +168,13 @@ function StableUnion() {
                         </div>
                         <div className="padding-bottom-1">
                             <Select
-                                className="style-input-2-marital"
+                                className="style-select-marital"
                                 labelId="select-state"
-                                id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
+                                id="select-state"                               
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {Countries.map((state) => (
+                                    <MenuItem key={state.key} value={state.key}>
+                                        {state.value}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -187,15 +186,13 @@ function StableUnion() {
                         </div>
                         <div className="padding-bottom-1">
                             <Select
-                                className="style-input-2-marital"
+                                className="style-select-marital"
                                 labelId="select-state"
-                                id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
+                                id="select-state"                                
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {Countries.map((state) => (
+                                    <MenuItem key={state.key} value={state.key}>
+                                        {state.value}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -206,7 +203,13 @@ function StableUnion() {
                             <span className="span-state">CEP do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="style-input-2-marital" placeholder="Escreva o CEP" variant="outlined" />
+                        <InputMask
+                                mask="99999-999"
+                                maskChar=""
+
+                            >
+                                {() => <TextField id="outlined-basic" className="style-input-1-marital" placeholder="00000-000" variant="outlined" />}
+                            </InputMask>
                         </div>
                     </div>
                     <div>
@@ -215,15 +218,13 @@ function StableUnion() {
                         </div>
                         <div className="padding-bottom-1">
                             <Select
-                                className="style-input-2-marital"
+                                className="style-select-marital"
                                 labelId="select-state"
-                                id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
+                                id="select-state"                                
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {Countries.map((state) => (
+                                    <MenuItem key={state.key} value={state.key}>
+                                        {state.value}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -231,6 +232,7 @@ function StableUnion() {
                     </div>
                 </div>
             </div>
+            ) : null}
         </div>
     )
 }

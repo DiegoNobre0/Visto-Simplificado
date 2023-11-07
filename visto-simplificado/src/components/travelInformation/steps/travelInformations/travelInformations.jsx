@@ -119,7 +119,7 @@ function TravelInformations() {
                                 maskChar=""
 
                             >
-                                {() => <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o CEP" variant="outlined" />}
+                                {() => <TextField id="outlined-basic" className="style-select-work" placeholder="00000-000" variant="outlined" />}
                             </InputMask>
 
                         </div>

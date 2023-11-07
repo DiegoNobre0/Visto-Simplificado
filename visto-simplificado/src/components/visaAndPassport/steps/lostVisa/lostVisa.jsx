@@ -58,7 +58,7 @@ function LostVisa() {
                     </RadioGroup>
                 </div>
             </div>
-            {selectedState === "Perdido" ?(
+            {selectedState === "Perdido" || selectedState === "Roubado" ?(
             <div className="div-marital-padding">
                 <div className="padding-visa">
                     <div>

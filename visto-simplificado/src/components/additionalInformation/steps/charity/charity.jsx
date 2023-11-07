@@ -4,6 +4,13 @@ import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../../../services/statesBrazilianService"
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
+import {
+    GetCountries,
+    GetState,
+    GetCity,
+    GetLanguages, //async functions
+  } from "react-country-state-city";
+
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -39,11 +46,14 @@ function getStyles(name, personName, theme) {
 }
 
 function Charity() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
+    const getStates = async () => { 
+        debugger    
+        GetLanguages().then((result) => {
+            setLanguageList(result);
+            console.log(result)
+          });
     }
-
+    const [languageList, setLanguageList] = useState([]);
     const theme = useTheme();
     const [personName, setPersonName] = React.useState([]);
 
@@ -55,8 +65,7 @@ function Charity() {
             typeof value === 'string' ? value.split(',') : value,
         );
     };
-
-    const [states, setStates] = useState([]);
+ 
     const [selectedState, setSelectedState] = useState("");
     const [radioRequester, setRadioRequester] = useState("");
 
@@ -117,13 +126,13 @@ function Charity() {
                                 input={<OutlinedInput />}
                                 MenuProps={MenuProps}
                             >
-                                {names.map((name) => (
+                                {languageList.map((item, index) => (
                                     <MenuItem
-                                        key={name}
-                                        value={name}
-                                        style={getStyles(name, personName, theme)}
+                                        key={item.name}
+                                        value={item.name}
+                                        style={getStyles(item.name, personName, theme)}
                                     >
-                                        {name}
+                                        {item.name}
                                     </MenuItem>
                                 ))}
                             </Select>

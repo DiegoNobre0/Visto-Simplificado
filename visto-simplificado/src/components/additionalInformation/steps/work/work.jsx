@@ -184,7 +184,7 @@ function Work() {
                                     maskChar=""
 
                                 >
-                                    {() => <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o CEP" variant="outlined" />}
+                                    {() => <TextField id="outlined-basic" className="style-select-work" placeholder="00000-000" variant="outlined" />}
                                 </InputMask>
 
                             </div>
@@ -201,7 +201,7 @@ function Work() {
                                     maskChar=""
 
                                 >
-                                    {() => <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o telefone" variant="outlined" />}
+                                    {() => <TextField id="outlined-basic" className="style-select-work" placeholder="55+ (00) 00000-0000" variant="outlined" />}
                                 </InputMask>
                             </div>
                         </div>
@@ -210,29 +210,12 @@ function Work() {
                                 <span className="span-state">Email da empresa<span style={{ color: 'red' }}>*</span></span>
                             </div>
                             <div className="padding-bottom-1">
-                                <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o email" variant="outlined" />
+                                <TextField id="outlined-basic" className="style-select-work" placeholder="email@exemplo.com" variant="outlined" />
                             </div>
                         </div>
                     </div>
                 </div>
-            ) : null}
-            {/* <div className="div-marital-padding">
-                <div className="padding-bottom-title-input">
-                    <span className="title-header-2">Já trabalhou em algum outro lugar?<span style={{color:'red'}}>*</span></span>
-                </div>
-                <div className="padding-radio-marital">
-                    <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="Sim"
-                    name="radio-buttons-group"
-                    className="subTitle-div-2"
-                    row                                
-                    >
-                        <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
-                        <FormControlLabel value="Não" control={<Radio />} label="Não" />                                
-                    </RadioGroup>
-                </div>                         
-            </div> */}
+            ) : null}  
         </div>
     )
 }

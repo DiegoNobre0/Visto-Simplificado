@@ -3,13 +3,9 @@ import './CNH.css'
 import { MenuItem, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../../../services/statesBrazilianService"
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import USStates from '../../../../datas/us_states'
 
 function CNH() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
-    }
-
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState("");
     const [radioRequester, setRadioRequester] = useState("Sim");
@@ -23,7 +19,7 @@ function CNH() {
     };
 
     useEffect(() => {
-        getStates();
+        
     }, []);
 
     return (
@@ -87,9 +83,9 @@ function CNH() {
                                         value={selectedState}
                                         onChange={handleChangeSelect}
                                     >
-                                        {states.map((state) => (
-                                            <MenuItem key={state.id} value={state.nome}>
-                                                {state.nome}
+                                        {USStates.map((state) => (
+                                            <MenuItem key={state.key} value={state.key}>
+                                                {state.value}
                                             </MenuItem>
                                         ))}
                                     </Select>

@@ -90,7 +90,7 @@ function Adress() {
                                 mask="99999-999"
                                 maskChar=""
                             >
-                                {() => <TextField id="outlined-basic" className="input-style-work" placeholder="Escreva o seu sobrenome" variant="outlined" />}
+                                {() => <TextField id="outlined-basic" className="input-style-work" placeholder="00000-000" variant="outlined" />}
                             </InputMask>
                         </div>
                     </div>

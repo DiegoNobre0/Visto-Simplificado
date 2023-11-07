@@ -6,6 +6,7 @@ import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import InputMask from 'react-input-mask';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import escortRelationship from '../../../../datas/escort_relationship'
 
 const statusArray = [
     { key: "Eu", valor: "Eu" },
@@ -142,9 +143,9 @@ function Payer() {
                                         value={selectedState}
                                         onChange={handleChangeSelectedState}
                                     >
-                                        {statusParent.map((state) => (
-                                            <MenuItem key={state.key} value={state.valor}>
-                                                {state.valor}
+                                        {escortRelationship.map((state) => (
+                                            <MenuItem key={state.key} value={state.key}>
+                                                {state.value}
                                             </MenuItem>
                                         ))}
                                     </Select>
@@ -232,7 +233,7 @@ function Payer() {
                                         maskChar=""
 
                                     >
-                                        {() => <TextField id="outlined-basic" className="style-select-work" placeholder="Escreva o seu sobrenome" variant="outlined" />}
+                                        {() => <TextField id="outlined-basic" className="style-select-work" placeholder="00000-000" variant="outlined" />}
                                     </InputMask>
                                 </div>
                             </div>

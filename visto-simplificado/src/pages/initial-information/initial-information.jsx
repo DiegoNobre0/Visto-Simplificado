@@ -5,20 +5,17 @@ import Select from '@mui/material/Select';
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import statesBrazilianService from "../../services/statesBrazilianService";
 import { Link } from "react-router-dom";
+import ds160Cities from "../../datas/ds160_city"
 
 
-function InitialInformation() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
-    }
+function InitialInformation() {  
 
-    const [states, setStates] = useState([]);
+    const [ds160City, setDs160City] = useState('[]');
     const [selectedState, setSelectedState] = useState("");
     const [radioRequester, setRadioRequester] = useState("Apenas para mim");
 
     const handleChangeSelect = (event) => {
-        setSelectedState(event.target.value);
+        setDs160City(event.target.value);
     };
 
     const handleChangeRequester = (event) => {
@@ -26,8 +23,7 @@ function InitialInformation() {
         localStorage.setItem("tipoForm", event.target.value);
     };
 
-    useEffect(() => {
-        getStates();
+    useEffect(() => {    
         localStorage.setItem("tipoForm", "Apenas para mim");
     }, []);
 
@@ -55,12 +51,12 @@ function InitialInformation() {
                                 className="style-select"
                                 labelId="select-state"
                                 id="select-state"
-                                value={selectedState}
+                                value={ds160City}
                                 onChange={handleChangeSelect}
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {ds160Cities.map((state) => (
+                                    <MenuItem key={state.key} value={state.key}>
+                                        {state.value}
                                     </MenuItem>
                                 ))}
                             </Select>

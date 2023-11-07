@@ -6,14 +6,7 @@ import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import InputMask from 'react-input-mask';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-
-const statusArray = [
-    { key: "Comum", valor: "Comum" },
-    { key: "Oficial", valor: "Oficial" },
-    { key: "Diplomático", valor: "Empresário" },
-    { key: "Passaporte para estrangeiro", valor: "Passaporte para estrangeiro" },
-    { key: "Outro", valor: "Outro" },
-];
+import passportType from '../../../../datas/passport_type'
 
 function Documents() {
     const getStates = async () => {
@@ -65,9 +58,9 @@ function Documents() {
                                 labelId="select-state"
                                 id="select-state"
                             >
-                                {statusArray.map((state) => (
-                                    <MenuItem key={state.key} value={state.valor}>
-                                        {state.valor}
+                                {passportType.map((state) => (
+                                    <MenuItem key={state.key} value={state.key}>
+                                        {state.value}
                                     </MenuItem>
                                 ))}
                             </Select>

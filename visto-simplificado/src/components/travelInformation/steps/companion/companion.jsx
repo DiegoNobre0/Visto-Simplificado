@@ -7,16 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import InputMask from 'react-input-mask';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-
-const statusArray = [
-    { key: "Mãe", valor: "Mãe" },
-    { key: "Pai", valor: "Pai" },
-    { key: "Tio", valor: "Tio" },
-    { key: "Irmã(o)", valor: "Irmã(o)" },
-    { key: "Amigo", valor: "Amigo" },
-    { key: "Chefe", valor: "Chefe" },
-    { key: "Colega de trabalho", valor: "Colega de trabalho" }
-];
+import escortRelationship from '../../../../datas/escort_relationship'
 
 function Companion() {
     const getStates = async () => {
@@ -144,9 +135,9 @@ function Companion() {
                                             value={companion.relationship}
                                             onChange={(e) => handleChange(index, 'relationship', e.target.value)}
                                         >
-                                            {statusArray.map((state) => (
-                                                <MenuItem key={state.key} value={state.valor}>
-                                                    {state.valor}
+                                            {escortRelationship.map((state) => (
+                                                <MenuItem key={state.key} value={state.key}>
+                                                    {state.value}
                                                 </MenuItem>
                                             ))}
                                         </Select>

@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material/styles';
 import InputMask from 'react-input-mask';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-
+import Countries from '../../../../datas/countries'
 
 
 const ITEM_HEIGHT = 48;
@@ -121,13 +121,13 @@ function Travels() {
               input={<OutlinedInput />}
               MenuProps={MenuProps}
             >
-              {names.map((name) => (
+              {Countries.map((name) => (
                 <MenuItem
-                  key={name}
-                  value={name}
-                  style={getStyles(name, personName, theme)}
+                  key={name.key}
+                  value={name.value}
+                  style={getStyles(name.value, personName, theme)}
                 >
-                  {name}
+                  {name.value}
                 </MenuItem>
               ))}
             </Select>

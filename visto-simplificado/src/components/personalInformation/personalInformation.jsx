@@ -65,15 +65,15 @@ function PersonalInformation (props) {
 
     const handleNextMarital = (selectedStatus) => {
        
-        if (selectedStatus === 'Solteiro') {
-          // setActiveStep((prevActiveStep) => prevActiveStep + 2);
-        } else if (selectedStatus === 'Casado') {
+        if (selectedStatus === 'S') {
+          setActiveStep((prevActiveStep) => prevActiveStep + 2);
+        } else if (selectedStatus === 'M') {
           setMaritalStatus(<Married key="married"/>)
-        } else if (selectedStatus === 'União Estável') {
+        } else if (selectedStatus === 'P') {
           setMaritalStatus(<StableUnion key="stableUnion"/>)
-        } else if (selectedStatus === 'Viúvo') {
+        } else if (selectedStatus === 'W') {
           setMaritalStatus(<Widow key="window"/>)
-        }else if (selectedStatus === 'Divorciado') {
+        }else if (selectedStatus === 'D' || "L") {
           setMaritalStatus(<Divorced key="divorced"/>)
         }
     };

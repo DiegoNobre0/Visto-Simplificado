@@ -6,23 +6,9 @@ import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import relativeUSStatus from '../../../../datas/relative_us_status'
 
-
-const statusArray = [
-    { key: "Cidadão americano", valor: "Cidadão americano" },
-    { key: "Pode residir permanentemente nos EUA (Green Card)", valor: "Pode residir permanentemente nos EUA (Green Card)" },
-    { key: "Não imigrante", valor: "Não imigrante" },
-    { key: "Outro/Não sei", valor: "Outro/Não sei" },
-];
-
-function MotherInformation() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
-    }
-
-    const [states, setStates] = useState([]);
-    const [selectedState, setSelectedState] = useState("");
+function MotherInformation() {       
     const [selectedMaritalStatus, setSelectedMaritalStatus] = useState("");
     const [radioRequester, setRadioRequester] = useState("Sim");
 
@@ -35,7 +21,7 @@ function MotherInformation() {
     };
 
     useEffect(() => {
-        getStates();
+        
     }, []);
 
     return (
@@ -135,9 +121,9 @@ function MotherInformation() {
                                     value={selectedMaritalStatus}
                                     onChange={handleChangeSelect}
                                 >
-                                    {statusArray.map((status) => (
+                                    {relativeUSStatus.map((status) => (
                                         <MenuItem key={status.key} value={status.key}>
-                                            {status.valor}
+                                            {status.value}
                                         </MenuItem>
                                     ))}
                                 </Select>

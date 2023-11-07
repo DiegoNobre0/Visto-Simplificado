@@ -1,41 +1,28 @@
 import React, { useEffect, useState } from "react";
 import './initialInformation.css';
-import {InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import statesBrazilianService from "../../../../services/statesBrazilianService"
+import {MenuItem, Select, TextField } from "@mui/material";
 import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import InputMask from 'react-input-mask';
-
-
-const statusArray = [
-    { key: "solteiro", valor: "Solteiro" },
-    { key: "casado", valor: "Casado" },
-    { key: "divorciado", valor: "Divorciado" },
-    { key: "uniao_estavel", valor: "União Estável" },
-    { key: "viuvo", valor: "Viúvo" },
-  ];
+import MaritalStatus from "../../../../datas/marital_status"
 
 
 function InitialInformation (props) {
-    const getStates = async () =>{        
-        const response = await statesBrazilianService.getStates();
-        setStates(response);    
-        
-    }
-   
-    const [states, setStates] = useState([]);
-    const [selectedMaritalStatus, setSelectedMaritalStatus] = useState("teste");
-    const [radioRequester, setRadioRequester] = useState("");
+    const [maritalStatus, setMaritalStatus] = useState("");
+    const [gender, setGender] = useState("");
 
-    const handleChangeSelect = (event) => { 
-        setSelectedMaritalStatus(event.target.value);
+    const handleChangeSelect = (event) => {         
+        setMaritalStatus(event.target.value);
         props.onStatusChange(event.target.value);
     };
+
+    const handleChangeRadio = (event) => { 
+        setGender(event.target.value);        
+    };
     
-    useEffect(() => {
-        getStates();
+    useEffect(() => {    
     }, []);
 
   return (        
@@ -79,13 +66,13 @@ function InitialInformation (props) {
                         
                         <Select
                         className="style-select-initial input-style-initial"                        
-                        value={selectedMaritalStatus}
+                        value={maritalStatus}
                         onChange={handleChangeSelect}
                         >
                             
-                          {statusArray.map((status) => (
-                            <MenuItem key={status.key} value={status.valor}>
-                            {status.valor}
+                          {MaritalStatus.map((status) => (
+                            <MenuItem key={status.key} value={status.key}>
+                            {status.value}
                             </MenuItem>
                             ))}
                         </Select>
@@ -98,13 +85,15 @@ function InitialInformation (props) {
                         <div className="padding-bottom-1">
                         <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="Feminino"
+                                defaultValue="Fs"
                                 name="radio-buttons-group"
                                 className="subTitle-div-2"
-                                row                                
+                                row     
+                                value={gender}  
+                                onChange={handleChangeRadio}                         
                             >
-                                <FormControlLabel value="Feminino" control={<Radio />} label="Feminino" />
-                                <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" />                                
+                                <FormControlLabel value="F" control={<Radio />} label="Feminino" />
+                                <FormControlLabel value="M" control={<Radio />} label="Masculino" />                                
                         </RadioGroup>
                         </div>
                     </div>
