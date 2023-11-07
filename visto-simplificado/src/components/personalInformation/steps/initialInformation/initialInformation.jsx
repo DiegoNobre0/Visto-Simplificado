@@ -8,6 +8,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import InputMask from 'react-input-mask';
 
+
 const statusArray = [
     { key: "solteiro", valor: "Solteiro" },
     { key: "casado", valor: "Casado" },
@@ -20,9 +21,10 @@ const statusArray = [
 function InitialInformation (props) {
     const getStates = async () =>{        
         const response = await statesBrazilianService.getStates();
-        setStates(response);        
+        setStates(response);    
+        
     }
-
+   
     const [states, setStates] = useState([]);
     const [selectedMaritalStatus, setSelectedMaritalStatus] = useState("teste");
     const [radioRequester, setRadioRequester] = useState("");

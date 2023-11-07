@@ -3,13 +3,24 @@ import './maritalStatus.css'
 import {MenuItem, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../../../services/statesBrazilianService"
 import {FormControlLabel, Radio, RadioGroup } from "@mui/material";
-
+import { Country, State, City }  from 'country-state-city';
 function Married () {
     const getStates = async () =>{        
         const response = await statesBrazilianService.getStates();
-        setStates(response);        
+        setStates(response);     
+        
+        const response2 = await State.getAllStates();
+        
+        const response3 = await City.getAllCities();
+     
+        const response4 = await Country.getAllCountries();
+        console.log(response2)
+        console.log(response3)
+        console.log(response4)
+        setPaises(response4)
     }
 
+    const [paises, setPaises] = useState([]);
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState("");
     const [radioRequester, setRadioRequester] = useState("");
@@ -84,12 +95,12 @@ function Married () {
                             className="style-select-marital"
                             labelId="select-state"
                             id="select-state"
-                            value={selectedState}
-                            onChange={handleChangeSelect}
+                            value={paises}
+                            // onChange={handleChangeSelect}
                             >
-                                {states.map((state) => (
-                                <MenuItem key={state.id} value={state.nome}>
-                                    {state.nome}
+                                {paises.map((state) => (
+                                <MenuItem key={state.id} value={state.name}>
+                                    {state.name}
                                 </MenuItem>
                                 ))}
                             </Select>
