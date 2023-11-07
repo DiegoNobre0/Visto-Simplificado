@@ -78,6 +78,13 @@
     color: #091F5F;   
 }
 
+.inf-img{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #091F5F;   
+}
+
 .subtitle-header{
     font-size: 16px;
     font-weight: 400;
@@ -115,9 +122,9 @@
     padding-bottom: 1rem;
 }
 
-.button-style{
+.button-style-img{
    width: 124px;
-   height: 48px;
+   height: 38px;
    border-radius: 8px;
    background-color: #2F5FE3;
    border: 0;
@@ -140,4 +147,33 @@
     grid-template-columns: 50% 50%;
     padding-left: 3rem;
 }
+
+.div-grid-nationality-inputs-2{
+    display: grid;   
+    grid-template-columns: 20% 50%;
+    padding-left: 3rem;
+}
+
+.div-info-img{
+    padding-top: 2rem;    
+    margin-left: -2rem;
+    padding-bottom: 0.5rem;
+}
+
+.div-info-img-2{
+    border-radius: 8px;
+    background-color: #ffff;
+    padding: 1rem 0rem 2rem 1.3rem;
+}
+
+.div-bnt{
+    display: flex;
+    justify-content: end;
+}
+
+.margin-icon{
+    margin-left: -2rem;
+    margin-top: -1rem
+}
+
 
