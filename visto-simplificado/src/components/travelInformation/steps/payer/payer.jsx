@@ -4,9 +4,10 @@ import { MenuItem, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../../../services/statesBrazilianService";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import InputMask from 'react-input-mask';
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import escortRelationship from '../../../../datas/escort_relationship'
+import escortRelationship from '../../../../datas/escort_relationship';
+import countriesService from "../../../../services/countriesWorld";
+import statesService from "../../../../services/StatesWorld";
+import citiesService from "../../../../services/citiesWorld";
 
 const statusArray = [
     { key: "Eu", valor: "Eu" },
@@ -20,43 +21,51 @@ const statusArray = [
     { key: "Colega de trabalho", valor: "Colega de trabalho" }
 ];
 
-const statusParent = [
-    { key: "Mãe", valor: "Mãe" },
-    { key: "Pai", valor: "Pai" },
-    { key: "Tio", valor: "Tio" },
-    { key: "Irmã(o)", valor: "Irmã(o)" },
-    { key: "Amigo", valor: "Amigo" },
-    { key: "Chefe", valor: "Chefe" },
-    { key: "Colega de trabalho", valor: "Colega de trabalho" },
-    { key: "Desconhecido", valor: "Desconhecido" }
-];
-
 function Payer() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
-    }
-
-    const [states, setStates] = useState([]);
-    const [radioRequester, setRadioRequester] = useState("Eu");
     const [selectedPayer, setSelectedPayer] = useState("");
-    const [selectedState, setSelectedState] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [country, setCountry] = useState("")
+    const [cities, setCities] = useState([]);
+    const [states, setStates] = useState([]);
+    const [countries, setCountries] = useState([])
 
 
     const handleChangeSelect = (event) => {
         setSelectedPayer(event.target.value);
     };
 
-    const handleChangeSelectedState = (event) => {
-        setSelectedState(event.target.value);
+    const getCountries = async () => {
+        let _countries = await countriesService.getCountries();
+        setCountries(_countries);
+    }
+
+    const getStates = async (country) => {
+        let _states = await statesService.getStateByCountry(country);
+        setStates(_states);
+    }
+
+    const getCities = async (country, state) => {
+        let _cities = await citiesService.getCitiesByStateByCountry(country, state);
+        setCities(_cities);
+    }
+
+    const handleChangeSelectCountry = (event) => {
+        setCountry(event.target.value);
+        getStates(event.target.value)
     };
 
-    const handleChangeRequester = (event) => {
-        setRadioRequester(event.target.value);
+    const handleChangeSelectState = (event) => {
+        setState(event.target.value);
+        getCities(country, event.target.value)
+    };
+
+    const handleChangeSelectCity = (event) => {
+        setCity(event.target.value);
     };
 
     useEffect(() => {
-        getStates();
+        getCountries()
     }, []);
 
     return (
@@ -140,8 +149,8 @@ function Payer() {
                                         className="style-select-work"
                                         labelId="select-state"
                                         id="select-state"
-                                        value={selectedState}
-                                        onChange={handleChangeSelectedState}
+                                        // value={selectedState}
+                                        // onChange={handleChangeSelectedState}
                                     >
                                         {escortRelationship.map((state) => (
                                             <MenuItem key={state.key} value={state.key}>
@@ -155,19 +164,19 @@ function Payer() {
                         <div className="div-1-inputs-marital">
                             <div>
                                 <div style={{ paddingBottom: '0.4rem' }}>
-                                    <span className="span-state">Cidade da pessoa<span style={{ color: 'red' }}>*</span></span>
+                                    <span className="span-state">País da pessoa<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
                                     <Select
                                         className="input-style-work"
                                         labelId="select-state"
                                         id="select-state"
-                                        value={selectedState}
-                                        onChange={handleChangeSelect}
+                                        value={country}
+                                        onChange={handleChangeSelectCountry}
                                     >
-                                        {states.map((state) => (
-                                            <MenuItem key={state.id} value={state.nome}>
-                                                {state.nome}
+                                        {countries.map((countrie, index) => (
+                                            <MenuItem key={index} value={countrie.iso2}>
+                                                {countrie.name}
                                             </MenuItem>
                                         ))}
                                     </Select>
@@ -182,12 +191,12 @@ function Payer() {
                                         className="input-style-work"
                                         labelId="select-state"
                                         id="select-state"
-                                        value={selectedState}
-                                        onChange={handleChangeSelect}
+                                        value={state}
+                                        onChange={handleChangeSelectState}
                                     >
-                                        {states.map((state) => (
-                                            <MenuItem key={state.id} value={state.nome}>
-                                                {state.nome}
+                                        {states.map((state, index) => (
+                                            <MenuItem key={index} value={state.iso2}>
+                                                {state.name}
                                             </MenuItem>
                                         ))}
                                     </Select>
@@ -195,19 +204,19 @@ function Payer() {
                             </div>
                             <div>
                                 <div style={{ paddingBottom: '0.4rem' }}>
-                                    <span className="span-state">País<span style={{ color: 'red' }}>*</span></span>
+                                    <span className="span-state">Cidade da pessoa<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
                                     <Select
                                         className="input-style-work"
                                         labelId="select-state"
                                         id="select-state"
-                                        value={selectedState}
-                                        onChange={handleChangeSelect}
+                                        value={city}
+                                        onChange={handleChangeSelectCity}
                                     >
-                                        {states.map((state) => (
-                                            <MenuItem key={state.id} value={state.nome}>
-                                                {state.nome}
+                                        {cities.map((city, index) => (
+                                            <MenuItem key={index} value={city.name}>
+                                                {city.name}
                                             </MenuItem>
                                         ))}
                                     </Select>
@@ -293,19 +302,19 @@ function Payer() {
                         <div className="div-1-inputs-marital">
                             <div>
                                 <div style={{ paddingBottom: '0.4rem' }}>
-                                    <span className="span-state">Cidade da companhia/organização<span style={{ color: 'red' }}>*</span></span>
+                                    <span className="span-state">País da companhia/organização?<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
                                     <Select
                                         className="input-style-work"
                                         labelId="select-state"
                                         id="select-state"
-                                        value={selectedState}
-                                        onChange={handleChangeSelect}
+                                        value={country}
+                                        onChange={handleChangeSelectCountry}
                                     >
-                                        {states.map((state) => (
-                                            <MenuItem key={state.id} value={state.nome}>
-                                                {state.nome}
+                                        {countries.map((countrie, index) => (
+                                            <MenuItem key={index} value={countrie.iso2}>
+                                                {countrie.name}
                                             </MenuItem>
                                         ))}
                                     </Select>
@@ -320,12 +329,12 @@ function Payer() {
                                         className="input-style-work"
                                         labelId="select-state"
                                         id="select-state"
-                                        value={selectedState}
-                                        onChange={handleChangeSelect}
+                                        value={state}
+                                        onChange={handleChangeSelectState}
                                     >
-                                        {states.map((state) => (
-                                            <MenuItem key={state.id} value={state.nome}>
-                                                {state.nome}
+                                        {states.map((state, index) => (
+                                            <MenuItem key={index} value={state.iso2}>
+                                                {state.name}
                                             </MenuItem>
                                         ))}
                                     </Select>
@@ -333,19 +342,19 @@ function Payer() {
                             </div>
                             <div>
                                 <div style={{ paddingBottom: '0.4rem' }}>
-                                    <span className="span-state">País da companhia/organização?<span style={{ color: 'red' }}>*</span></span>
+                                    <span className="span-state">Cidade da companhia/organização<span style={{ color: 'red' }}>*</span></span>
                                 </div>
                                 <div className="padding-bottom-1">
                                     <Select
                                         className="input-style-work"
                                         labelId="select-state"
                                         id="select-state"
-                                        value={selectedState}
-                                        onChange={handleChangeSelect}
+                                        value={city}
+                                        onChange={handleChangeSelectCity}
                                     >
-                                        {states.map((state) => (
-                                            <MenuItem key={state.id} value={state.nome}>
-                                                {state.nome}
+                                        {cities.map((city, index) => (
+                                            <MenuItem key={index} value={city.name}>
+                                                {city.name}
                                             </MenuItem>
                                         ))}
                                     </Select>

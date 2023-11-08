@@ -25,7 +25,7 @@ const Countries = [
     },
     {
         key: "ANTI",
-        value: "Antiga e Barbuda"
+        value: "Antiga Barbuda"
     },
     {
         key: "SARB",

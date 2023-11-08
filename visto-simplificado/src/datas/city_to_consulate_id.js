@@ -1,27 +1,27 @@
 const cityToConsulateId = [
     {
-      key: "Rio de Janeiro",
-      value: 55
+      key: 55,
+      value: "Rio de Janeiro" 
     },
     {
-      key: "São Paulo",
-      value: 56
+      key: 56,
+      value: "São Paulo"
     },
     {
-      key: "Brasília",
-      value: 54
+      key: 54,
+      value: "Brasília"
     },
     {
-      key: "Porto Alegre",
-      value: 128
+      key: 128,
+      value: "Porto Alegre"
     },
     {
-      key: "Recife",
-      value: 57
+      key: 57,
+      value: "Recife"
     },
     {
-      key: "Nenhuma das opções",
-      value: 0
+      key: 0,
+      value: "Nenhuma das opções"
     }
   ];
   

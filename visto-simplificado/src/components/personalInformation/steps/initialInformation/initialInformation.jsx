@@ -11,7 +11,7 @@ import MaritalStatus from "../../../../datas/marital_status"
 
 function InitialInformation (props) {
     const [maritalStatus, setMaritalStatus] = useState("");
-    const [gender, setGender] = useState("");
+    const [gender, setGender] = useState("F");
 
     const handleChangeSelect = (event) => {         
         setMaritalStatus(event.target.value);
@@ -85,7 +85,7 @@ function InitialInformation (props) {
                         <div className="padding-bottom-1">
                         <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="Fs"
+                                defaultValue="F"
                                 name="radio-buttons-group"
                                 className="subTitle-div-2"
                                 row     

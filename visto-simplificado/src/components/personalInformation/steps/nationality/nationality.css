@@ -177,3 +177,26 @@
 }
 
 
+.font-button-img{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.4px;
+    color: white;    
+    text-align: -webkit-center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.div-img-style{
+    height: 10.5rem;
+    width: 9.5rem;    
+    margin-left: 2rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+
+

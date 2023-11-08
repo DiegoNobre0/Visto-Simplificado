@@ -7,11 +7,52 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Countries from "../../../../datas/countries";
 import InputMask from 'react-input-mask';
+import countriesService from "../../../../services/countriesWorld";
+import statesService from "../../../../services/StatesWorld";
+import citiesService from "../../../../services/citiesWorld";
 
 function StableUnion() {
     const [nationality, setNationality] = useState("");
     const [countryBirth, setCountryBirth] = useState("");
     const [partnerAdress, setPartnerAdress] = useState("Sim");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [country, setCountry] = useState("")
+    const [cities, setCities] = useState([]);
+    const [states, setStates] = useState([]);
+    const [countries, setCountries] = useState([]);
+
+    const getCountries = async () => {
+        let _countries = await countriesService.getCountries();
+        setCountries(_countries);
+        console.log(countries)
+    }
+
+    const getStates = async (country) => {
+        let _states = await statesService.getStateByCountry(country);
+        setStates(_states);
+    }
+
+    const getCities = async (country, state) => {
+        let _cities = await citiesService.getCitiesByStateByCountry(country, state);
+        setCities(_cities)
+        console.log(_cities)
+    }
+
+    const handleChangeSelectCountry = (event) => {
+        setCountry(event.target.value);
+        getStates(event.target.value)
+    };
+
+    const handleChangeSelectState = (event) => {
+        setState(event.target.value);
+        getCities(country, event.target.value)
+    };
+
+    const handleChangeSelectCity = (event) => {
+        setCity(event.target.value);
+    };
+
 
     const handleChangeSelectNationality = (event) => {
         setNationality(event.target.value);
@@ -23,7 +64,9 @@ function StableUnion() {
         setPartnerAdress(event.target.value);
     };
 
+
     useEffect(() => {
+        getCountries()
     }, []);
 
     return (
@@ -139,99 +182,105 @@ function StableUnion() {
                 </div>
             </div>
             {partnerAdress === "Sim" ? (
-            <div className="div-marital-padding">
-                <div className="padding-bottom-title-input">
-                    <span className="title-header-2">Endereço do companheiro<span style={{ color: 'red' }}>*</span></span>
-                </div>
-                <div className="div-2-inputs-marital">
-                    <div>
-                        <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">Endereço do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
+                <div className="div-marital-padding">
+                    <div className="padding-bottom-title-input">
+                        <span className="title-header-2">Endereço do companheiro<span style={{ color: 'red' }}>*</span></span>
+                    </div>
+                    <div className="div-2-inputs-marital">
+                        <div>
+                            <div style={{ paddingBottom: '0.4rem' }}>
+                                <span className="span-state">Endereço do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
+                            </div>
+                            <div className="padding-bottom-1">
+                                <TextField id="outlined-basic" className="style-select-marital" placeholder="Rua, bairro, número" variant="outlined" />
+                            </div>
                         </div>
-                        <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="style-select-marital" placeholder="Rua, bairro, número" variant="outlined" />
+                        <div>
+                            <div style={{ paddingBottom: '0.4rem' }}>
+                                <span className="span-state">Complemento do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
+                            </div>
+                            <div className="padding-bottom-1">
+                                <TextField id="outlined-basic" className="style-select-marital" placeholder="Preencha um complemento" variant="outlined" />
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">Complemento do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
+                    <div className="div-3-inputs-marital">
+                        <div>
+                            <div style={{ paddingBottom: '0.4rem' }}>
+                                <span className="span-state">País do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
+                            </div>
+                            <div className="padding-bottom-1">
+                                <Select
+                                    className="style-select-marital"
+                                    labelId="select-state"
+                                    id="select-state"
+                                    value={country}
+                                    onChange={handleChangeSelectCountry}
+                                >
+                                    {countries.map((countrie, index) => (
+                                        <MenuItem key={index} value={countrie.iso2}>
+                                            {countrie.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </div>
                         </div>
-                        <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="style-select-marital" placeholder="Preencha um complemento" variant="outlined" />
+                        <div>
+                            <div style={{ paddingBottom: '0.4rem' }}>
+                                <span className="span-state">Estado do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
+                            </div>
+                            <div className="padding-bottom-1">
+                                <Select
+                                    className="style-select-marital"
+                                    labelId="select-state"
+                                    id="select-state"
+                                    value={state}
+                                    onChange={handleChangeSelectState}
+                                >
+                                    {states.map((state, index) => (
+                                        <MenuItem key={index} value={state.iso2}>
+                                            {state.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className="div-3-inputs-marital">
-                    <div>
-                        <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">Cidade do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
+                        <div>
+                            <div style={{ paddingBottom: '0.4rem' }}>
+                                <span className="span-state">Cidade do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
+                            </div>
+                            <div className="padding-bottom-1">
+                                <Select
+                                    className="style-select-marital"
+                                    labelId="select-state"
+                                    id="select-state"
+                                    value={city}
+                                    onChange={handleChangeSelectCity}
+                                >
+                                    {cities.map((city, index) => (
+                                        <MenuItem key={index} value={city.name}>
+                                            {city.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </div>
                         </div>
-                        <div className="padding-bottom-1">
-                            <Select
-                                className="style-select-marital"
-                                labelId="select-state"
-                                id="select-state"                               
-                            >
-                                {Countries.map((state) => (
-                                    <MenuItem key={state.key} value={state.key}>
-                                        {state.value}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </div>
-                    </div>
-                    <div>
-                        <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">Estado do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <Select
-                                className="style-select-marital"
-                                labelId="select-state"
-                                id="select-state"                                
-                            >
-                                {Countries.map((state) => (
-                                    <MenuItem key={state.key} value={state.key}>
-                                        {state.value}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </div>
-                    </div>
-                    <div>
-                        <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">CEP do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
-                        </div>
-                        <div className="padding-bottom-1">
-                        <InputMask
-                                mask="99999-999"
-                                maskChar=""
+                        <div>
+                            <div style={{ paddingBottom: '0.4rem' }}>
+                                <span className="span-state">CEP do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
+                            </div>
+                            <div className="padding-bottom-1">
+                                <InputMask
+                                    mask="99999-999"
+                                    maskChar=""
 
-                            >
-                                {() => <TextField id="outlined-basic" className="style-input-1-marital" placeholder="00000-000" variant="outlined" />}
-                            </InputMask>
-                        </div>
-                    </div>
-                    <div>
-                        <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">País do companheiro(a)<span style={{ color: 'red' }}>*</span></span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <Select
-                                className="style-select-marital"
-                                labelId="select-state"
-                                id="select-state"                                
-                            >
-                                {Countries.map((state) => (
-                                    <MenuItem key={state.key} value={state.key}>
-                                        {state.value}
-                                    </MenuItem>
-                                ))}
-                            </Select>
+                                >
+                                    {() => <TextField id="outlined-basic" className="style-input-1-marital" placeholder="00000-000" variant="outlined" />}
+                                </InputMask>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             ) : null}
         </div>
     )

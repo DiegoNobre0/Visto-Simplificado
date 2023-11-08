@@ -4,31 +4,37 @@ import { MenuItem, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../../../services/statesBrazilianService"
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import PrimaryOccupation from "../../../../datas/primary_occupation";
-
-
-const statusArray = [
-    { key: "Agricultura", valor: "Agricultura" },
-    { key: "Artista", valor: "Artista" },
-    { key: "Empresário", valor: "Empresário" },
-    { key: "Comunicação", valor: "Comunicação" },
-    { key: "Outro", valor: "Outro" },
-];
+import statesService from "../../../../services/StatesWorld";
+import citiesService from "../../../../services/citiesWorld";
 
 function DistantFamily() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
-    }
-
-    const [states, setStates] = useState([]);
-    const [selectedState, setSelectedState] = useState("");
     const [radioRequester, setRadioRequester] = useState("Sim");
     const [radioOcupation, setRadioOcupation] = useState("Empregado");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [cities, setCities] = useState([]);
+    const [states, setStates] = useState([]);
 
-    const handleChangeSelect = (event) => {
-        setSelectedState(event.target.value);
+
+    const getStates = async () => {
+        debugger
+        let _states = await statesService.getStateByCountry("US");
+        setStates(_states);
+    }
+
+    const getCities = async (country, state) => {
+        let _cities = await citiesService.getCitiesByStateByCountry(country, state);
+        setCities(_cities);
+    }
+
+    const handleChangeSelectState = (event) => {
+        setState(event.target.value);
+        getCities("US", event.target.value)
     };
 
+    const handleChangeSelectCity = (event) => {
+        setCity(event.target.value);
+    };
     const handleChangeRequester = (event) => {
         setRadioRequester(event.target.value);
     };
@@ -36,6 +42,7 @@ function DistantFamily() {
     const handleChangeRadioOcupation = (event) => {
         setRadioOcupation(event.target.value);
     };
+
 
     useEffect(() => {
         getStates();
@@ -110,12 +117,12 @@ function DistantFamily() {
                                                 <span className="span-state">Área de ocupação<span style={{ color: 'red' }}>*</span></span>
                                             </div>
                                             <div className="padding-bottom-distant">
-                                            <Select
+                                                <Select
                                                     className="input-style-distant"
                                                     labelId="select-state"
                                                     id="select-state"
-                                                    value={selectedState}
-                                                    onChange={handleChangeSelect}
+                                                // value={selectedState}
+                                                // onChange={handleChangeSelect}
                                                 >
                                                     {PrimaryOccupation.map((state) => (
                                                         <MenuItem key={state.key} value={state.key}>
@@ -152,12 +159,12 @@ function DistantFamily() {
                                                     className="input-style-distant"
                                                     labelId="select-state"
                                                     id="select-state"
-                                                    value={selectedState}
-                                                    onChange={handleChangeSelect}
+                                                    value={state}
+                                                    onChange={handleChangeSelectState}
                                                 >
-                                                    {states.map((state) => (
-                                                        <MenuItem key={state.id} value={state.nome}>
-                                                            {state.nome}
+                                                    {states.map((state, index) => (
+                                                        <MenuItem key={index} value={state.iso2}>
+                                                            {state.name}
                                                         </MenuItem>
                                                     ))}
                                                 </Select>
@@ -172,12 +179,12 @@ function DistantFamily() {
                                                     className="input-style-distant"
                                                     labelId="select-state"
                                                     id="select-state"
-                                                    value={selectedState}
-                                                    onChange={handleChangeSelect}
+                                                    value={city}
+                                                    onChange={handleChangeSelectCity}
                                                 >
-                                                    {states.map((state) => (
-                                                        <MenuItem key={state.id} value={state.nome}>
-                                                            {state.nome}
+                                                    {cities.map((city, index) => (
+                                                        <MenuItem key={index} value={city.name}>
+                                                            {city.name}
                                                         </MenuItem>
                                                     ))}
                                                 </Select>

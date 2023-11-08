@@ -6,26 +6,56 @@ import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import InputMask from 'react-input-mask';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import countriesService from "../../../../services/countriesWorld";
+import statesService from "../../../../services/StatesWorld";
+import citiesService from "../../../../services/citiesWorld";
+
 function Formation() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
+
+    const [selectedState, setSelectedState] = useState("Sim");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [country, setCountry] = useState("")
+    const [cities, setCities] = useState([]);
+    const [states, setStates] = useState([]);
+    const [countries, setCountries] = useState([]);
+
+    const getCountries = async () => {
+        let _countries = await countriesService.getCountries();
+        setCountries(_countries);
     }
 
-    const [states, setStates] = useState([]);
-    const [selectedState, setSelectedState] = useState("Sim");
-    const [radioRequester, setRadioRequester] = useState("");
+    const getStates = async (country) => {
+        let _states = await statesService.getStateByCountry(country);
+        setStates(_states);
+    }
+
+    const getCities = async (country, state) => {
+        let _cities = await citiesService.getCitiesByStateByCountry(country, state);
+        setCities(_cities);
+    }
+
+    const handleChangeSelectCountry = (event) => {
+        setCountry(event.target.value);
+        getStates(event.target.value)
+    };
+
+    const handleChangeSelectState = (event) => {
+        setState(event.target.value);
+        getCities(country, event.target.value)
+    };
+
+    const handleChangeSelectCity = (event) => {
+        setCity(event.target.value);
+    };
 
     const handleChangeSelect = (event) => {
         setSelectedState(event.target.value);
     };
 
-    const handleChangeRequester = (event) => {
-        setRadioRequester(event.target.value);
-    };
 
     useEffect(() => {
-        getStates();
+        getCountries()
     }, []);
 
     return (
@@ -108,22 +138,22 @@ function Formation() {
                     <div className="div-1-inputs-marital">
                         <div>
                             <div style={{ paddingBottom: '0.4rem' }}>
-                                <span className="span-state">Cidade da instituição de ensino<span style={{ color: 'red' }}>*</span></span>
+                                <span className="span-state">Pais da instituição de ensino<span style={{ color: 'red' }}>*</span></span>
                             </div>
                             <div className="padding-bottom-1">
-                            <Select
-                                className="input-style-work"
-                                labelId="select-state"
-                                id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
-                            >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
-                                    </MenuItem>
-                                ))}
-                            </Select>
+                                <Select
+                                    className="input-style-work"
+                                    labelId="select-state"
+                                    id="select-state"
+                                    value={country}
+                                    onChange={handleChangeSelectCountry}
+                                >
+                                    {countries.map((countrie, index) => (
+                                        <MenuItem key={index} value={countrie.iso2}>
+                                            {countrie.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
                             </div>
                         </div>
                         <div>
@@ -131,39 +161,39 @@ function Formation() {
                                 <span className="span-state">Estado da instituição de ensino<span style={{ color: 'red' }}>*</span></span>
                             </div>
                             <div className="padding-bottom-1">
-                            <Select
-                                className="input-style-work"
-                                labelId="select-state"
-                                id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
-                            >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
-                                    </MenuItem>
-                                ))}
-                            </Select>
+                                <Select
+                                    className="input-style-work"
+                                    labelId="select-state"
+                                    id="select-state"
+                                    value={state}
+                                    onChange={handleChangeSelectState}
+                                >
+                                    {states.map((state, index) => (
+                                        <MenuItem key={index} value={state.iso2}>
+                                            {state.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
                             </div>
                         </div>
                         <div>
                             <div style={{ paddingBottom: '0.4rem' }}>
-                                <span className="span-state">Pais da instituição de ensino<span style={{ color: 'red' }}>*</span></span>
+                                <span className="span-state">Cidade da instituição de ensino<span style={{ color: 'red' }}>*</span></span>
                             </div>
                             <div className="padding-bottom-1">
-                            <Select
-                                className="input-style-work"
-                                labelId="select-state"
-                                id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
-                            >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
-                                    </MenuItem>
-                                ))}
-                            </Select>
+                                <Select
+                                    className="input-style-work"
+                                    labelId="select-state"
+                                    id="select-state"
+                                    value={city}
+                                    onChange={handleChangeSelectCity}
+                                >
+                                    {cities.map((city, index) => (
+                                        <MenuItem key={index} value={city.name}>
+                                            {city.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
                             </div>
                         </div>
                     </div>

@@ -1,33 +1,56 @@
 import React, { useEffect, useState } from "react"
 import './adress.css'
 import { MenuItem, Select, TextField } from "@mui/material";
-import statesBrazilianService from "../../../../services/statesBrazilianService";
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import InputMask from 'react-input-mask';
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-
+import countriesService from "../../../../services/countriesWorld";
+import statesService from "../../../../services/StatesWorld";
+import citiesService from "../../../../services/citiesWorld";
 
 function Adress() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
+    const [selectedState, setSelectedState] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [country, setCountry] = useState("")
+    const [cities, setCities] = useState([]);
+    const [states, setStates] = useState([]);
+    const [countries, setCountries] = useState([])
+
+    const getCountries = async () => {
+        let _countries = await countriesService.getCountries();
+        setCountries(_countries);
     }
 
-    const [states, setStates] = useState([]);
-    const [selectedState, setSelectedState] = useState("");
-    const [radioRequester, setRadioRequester] = useState("");
+    const getStates = async (country) => {
+        let _states = await statesService.getStateByCountry(country);
+        setStates(_states);
+    }
+
+    const getCities = async (country, state) => {
+        let _cities = await citiesService.getCitiesByStateByCountry(country, state);
+        setCities(_cities);
+    }
+
+    const handleChangeSelectCountry = (event) => {
+        setCountry(event.target.value);
+        getStates(event.target.value)
+    };
+
+    const handleChangeSelectState = (event) => {
+        setState(event.target.value);
+        getCities(country, event.target.value)
+    };
+
+    const handleChangeSelectCity = (event) => {
+        setCity(event.target.value);
+    };
 
     const handleChangeSelect = (event) => {
         setSelectedState(event.target.value);
     };
 
-    const handleChangeRequester = (event) => {
-        setRadioRequester(event.target.value);
-    };
 
     useEffect(() => {
-        getStates();
+        getCountries()
     }, []);
 
     return (
@@ -60,7 +83,7 @@ function Adress() {
                         </div>
                     </div>
                 </div>
-                <div className="div-1-inputs-residence">
+                <div className="div-3-inputs-residence">
                     <div>
                         <div style={{ paddingBottom: '0.4rem' }}>
                             <span className="span-state">País do endereço de entrega<span style={{ color: 'red' }}>*</span></span>
@@ -70,12 +93,53 @@ function Adress() {
                                 className="style-select-work"
                                 labelId="select-state"
                                 id="select-state"
-                                value={selectedState}
-                                onChange={handleChangeSelect}
+                                value={country}
+                                onChange={handleChangeSelectCountry}
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {countries.map((countrie, index) => (
+                                    <MenuItem key={index} value={countrie.iso2}>
+                                        {countrie.name}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </div>
+                    </div>
+                    <div>
+                        <div style={{ paddingBottom: '0.4rem' }}>
+                            <span className="span-state">Estado do endereço de entrega<span style={{ color: 'red' }}>*</span></span>
+                        </div>
+                        <div className="padding-bottom-1">
+                            <Select
+                                className="style-select-work"
+                                labelId="select-state"
+                                id="select-state"
+                                value={state}
+                                onChange={handleChangeSelectState}
+
+                            >
+                                {states.map((state, index) => (
+                                    <MenuItem key={index} value={state.iso2}>
+                                        {state.name}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </div>
+                    </div>
+                    <div>
+                        <div style={{ paddingBottom: '0.4rem' }}>
+                            <span className="span-state">Cidade do endereço de entrega<span style={{ color: 'red' }}>*</span></span>
+                        </div>
+                        <div className="padding-bottom-1">
+                            <Select
+                                className="style-select-work"
+                                labelId="select-state"
+                                id="select-state"
+                                value={city}
+                                onChange={handleChangeSelectCity}
+                            >
+                                {cities.map((city, index) => (
+                                    <MenuItem key={index} value={city.name}>
+                                        {city.name}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -94,47 +158,7 @@ function Adress() {
                             </InputMask>
                         </div>
                     </div>
-                    <div>
-                        <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">Cidade do endereço de entrega<span style={{ color: 'red' }}>*</span></span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <Select
-                                className="style-select-work"
-                                labelId="select-state"
-                                id="select-state"
-
-                            >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </div>
-                    </div>
-                </div>
-                <div className="div-2-inputs-work">
-                    <div>
-                        <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">Estado do endereço de entrega<span style={{ color: 'red' }}>*</span></span>
-                        </div>
-                        <div className="padding-bottom-1">
-                            <Select
-                                className="style-select-work"
-                                labelId="select-state"
-                                id="select-state"
-
-                            >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </div>
-                    </div>
-                </div>
+                </div>                
             </div>
         </div>
     )

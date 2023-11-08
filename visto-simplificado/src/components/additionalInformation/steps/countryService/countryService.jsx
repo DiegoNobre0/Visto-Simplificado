@@ -6,6 +6,7 @@ import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import InputMask from 'react-input-mask';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import Countries from "../../../../datas/countries";
 
 function CountryService() {
     const getStates = async () => {
@@ -77,9 +78,9 @@ function CountryService() {
                                         value={selectedState}
                                         onChange={handleChangeSelect}
                                     >
-                                        {states.map((state) => (
-                                            <MenuItem key={state.id} value={state.nome}>
-                                                {state.nome}
+                                        {Countries.map((state) => (
+                                            <MenuItem key={state.key} value={state.key}>
+                                                {state.value}
                                             </MenuItem>
                                         ))}
                                     </Select>

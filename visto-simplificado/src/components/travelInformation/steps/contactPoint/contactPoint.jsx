@@ -4,35 +4,40 @@ import { MenuItem, Select, TextField } from "@mui/material";
 import statesBrazilianService from "../../../../services/statesBrazilianService";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import InputMask from 'react-input-mask';
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-
-const statusArray = [
-    { key: "Mãe", valor: "Mãe" },
-    { key: "Pai", valor: "Pai" },
-    { key: "Tio", valor: "Tio" },
-    { key: "Irmã(o)", valor: "Irmã(o)" },
-    { key: "Amigo", valor: "Amigo" },
-    { key: "Chefe", valor: "Chefe" },
-    { key: "Colega de trabalho", valor: "Colega de trabalho" },
-    { key: "Desconhecido", valor: "Desconhecido" }
-];
+import escortRelationship from '../../../../datas/escort_relationship'
+import statesService from "../../../../services/StatesWorld";
+import citiesService from "../../../../services/citiesWorld";
 
 function ContactPoint() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
+    const [selectedState, setSelectedState] = useState("Hotel");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [cities, setCities] = useState([]);
+    const [states, setStates] = useState([]);
+
+
+    const getStates = async (country) => {
+        let _states = await statesService.getStateByCountry("US");
+        setStates(_states);
     }
 
-    const [states, setStates] = useState([]);
-    const [selectedState, setSelectedState] = useState("Hotel");
+    const getCities = async (country, state) => {
+        let _cities = await citiesService.getCitiesByStateByCountry(country, state);
+        setCities(_cities);
+    }
+
+    const handleChangeSelectState = (event) => {
+        setState(event.target.value);
+        getCities("US", event.target.value)
+    };
+
+    const handleChangeSelectCity = (event) => {
+        setCity(event.target.value);
+    };
+
 
     const handleChangeSelect = (event) => {
         setSelectedState(event.target.value);
-    };
-
-    const handleChangeRequester = (event) => {
-        setRadioRequester(event.target.value);
     };
 
     useEffect(() => {
@@ -87,26 +92,6 @@ function ContactPoint() {
                     <div className="div-2-inputs-work">
                         <div>
                             <div style={{ paddingBottom: '0.4rem' }}>
-                                <span className="span-state">Cidade do hotel<span style={{ color: 'red' }}>*</span></span>
-                            </div>
-                            <div className="padding-bottom-1">
-                                <Select
-                                    className="style-select-work"
-                                    labelId="select-state"
-                                    id="select-state"
-                                    value={selectedState}
-                                    onChange={handleChangeSelect}
-                                >
-                                    {states.map((state) => (
-                                        <MenuItem key={state.id} value={state.nome}>
-                                            {state.nome}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </div>
-                        </div>
-                        <div>
-                            <div style={{ paddingBottom: '0.4rem' }}>
                                 <span className="span-state">Estado do hotel<span style={{ color: 'red' }}>*</span></span>
                             </div>
                             <div className="padding-bottom-1">
@@ -114,12 +99,32 @@ function ContactPoint() {
                                     className="style-select-work"
                                     labelId="select-state"
                                     id="select-state"
-                                    value={selectedState}
-                                    onChange={handleChangeSelect}
+                                    value={state}
+                                    onChange={handleChangeSelectState}
                                 >
-                                    {states.map((state) => (
-                                        <MenuItem key={state.id} value={state.nome}>
-                                            {state.nome}
+                                    {states.map((state, index) => (
+                                        <MenuItem key={index} value={state.iso2}>
+                                            {state.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </div>
+                        </div>
+                        <div>
+                            <div style={{ paddingBottom: '0.4rem' }}>
+                                <span className="span-state">Cidade do hotel<span style={{ color: 'red' }}>*</span></span>
+                            </div>
+                            <div className="padding-bottom-1">
+                                <Select
+                                    className="style-select-work"
+                                    labelId="select-state"
+                                    id="select-state"
+                                    value={city}
+                                    onChange={handleChangeSelectCity}
+                                >
+                                    {cities.map((city, index) => (
+                                        <MenuItem key={index} value={city.name}>
+                                            {city.name}
                                         </MenuItem>
                                     ))}
                                 </Select>
@@ -212,9 +217,9 @@ function ContactPoint() {
                                     value={selectedState}
                                     onChange={handleChangeSelect}
                                 >
-                                    {statusArray.map((state) => (
-                                        <MenuItem key={state.key} value={state.valor}>
-                                            {state.valor}
+                                    {escortRelationship.map((state) => (
+                                        <MenuItem key={state.key} value={state.key}>
+                                            {state.value}
                                         </MenuItem>
                                     ))}
                                 </Select>
@@ -224,26 +229,6 @@ function ContactPoint() {
                     <div className="div-2-inputs-work">
                         <div>
                             <div style={{ paddingBottom: '0.4rem' }}>
-                                <span className="span-state">Cidade do contato<span style={{ color: 'red' }}>*</span></span>
-                            </div>
-                            <div className="padding-bottom-1">
-                                <Select
-                                    className="style-select-work"
-                                    labelId="select-state"
-                                    id="select-state"
-                                    value={selectedState}
-                                    onChange={handleChangeSelect}
-                                >
-                                    {states.map((state) => (
-                                        <MenuItem key={state.id} value={state.nome}>
-                                            {state.nome}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </div>
-                        </div>
-                        <div>
-                            <div style={{ paddingBottom: '0.4rem' }}>
                                 <span className="span-state">Estado do contato<span style={{ color: 'red' }}>*</span></span>
                             </div>
                             <div className="padding-bottom-1">
@@ -251,12 +236,32 @@ function ContactPoint() {
                                     className="style-select-work"
                                     labelId="select-state"
                                     id="select-state"
-                                    value={selectedState}
-                                    onChange={handleChangeSelect}
+                                    value={state}
+                                    onChange={handleChangeSelectState}
                                 >
-                                    {states.map((state) => (
-                                        <MenuItem key={state.id} value={state.nome}>
-                                            {state.nome}
+                                    {states.map((state, index) => (
+                                        <MenuItem key={index} value={state.iso2}>
+                                            {state.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </div>
+                        </div>
+                        <div>
+                            <div style={{ paddingBottom: '0.4rem' }}>
+                                <span className="span-state">Cidade do contato<span style={{ color: 'red' }}>*</span></span>
+                            </div>
+                            <div className="padding-bottom-1">
+                                <Select
+                                    className="style-select-work"
+                                    labelId="select-state"
+                                    id="select-state"
+                                    value={city}
+                                    onChange={handleChangeSelectCity}
+                                >
+                                    {cities.map((city, index) => (
+                                        <MenuItem key={index} value={city.name}>
+                                            {city.name}
                                         </MenuItem>
                                     ))}
                                 </Select>

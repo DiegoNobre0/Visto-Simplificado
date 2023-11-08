@@ -7,27 +7,55 @@ import InputMask from 'react-input-mask';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import passportType from '../../../../datas/passport_type'
+import countriesService from "../../../../services/countriesWorld";
+import statesService from "../../../../services/StatesWorld";
+import citiesService from "../../../../services/citiesWorld";
+import Countries from "../../../../datas/countries";
 
 function Documents() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
-    }
-
-    const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState("Não tive meu passaporte perdido ou roubado");
-    const [radioRequester, setRadioRequester] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [country, setCountry] = useState("")
+    const [cities, setCities] = useState([]);
+    const [states, setStates] = useState([]);
+    const [countries, setCountries] = useState([])
 
     const handleChangeSelect = (event) => {
         setSelectedState(event.target.value);
     };
 
-    const handleChangeRequester = (event) => {
-        setRadioRequester(event.target.value);
+    const getCountries = async () => {
+        let _countries = await countriesService.getCountries();
+        setCountries(_countries);
+    }
+
+    const getStates = async (country) => {
+        let _states = await statesService.getStateByCountry(country);
+        setStates(_states);
+    }
+
+    const getCities = async (country, state) => {
+        let _cities = await citiesService.getCitiesByStateByCountry(country, state);
+        setCities(_cities);
+    }
+
+    const handleChangeSelectCountry = (event) => {
+        setCountry(event.target.value);
+        getStates(event.target.value)
+    };
+
+    const handleChangeSelectState = (event) => {
+        setState(event.target.value);
+        getCities(country, event.target.value)
+    };
+
+    const handleChangeSelectCity = (event) => {
+        setCity(event.target.value);
     };
 
     useEffect(() => {
-        getStates();
+        getCountries();
     }, []);
 
     return (
@@ -78,18 +106,19 @@ function Documents() {
                 <div className="div-1-inputs-marital">
                     <div>
                         <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">Cidade onde o passaporte foi emitido<span style={{ color: 'red' }}>*</span></span>
+                            <span className="span-state">País de emissão do passaporte<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                             <Select
                                 className="style-select-work"
                                 labelId="select-state"
                                 id="select-state"
-
+                                value={country}
+                                onChange={handleChangeSelectCountry}
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {countries.map((countrie, index) => (
+                                    <MenuItem key={index} value={countrie.iso2}>
+                                        {countrie.name}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -104,10 +133,12 @@ function Documents() {
                                 className="style-select-work"
                                 labelId="select-state"
                                 id="select-state"
+                                value={state}
+                                onChange={handleChangeSelectState}
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {states.map((state, index) => (
+                                    <MenuItem key={index} value={state.iso2}>
+                                        {state.name}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -115,17 +146,19 @@ function Documents() {
                     </div>
                     <div>
                         <div style={{ paddingBottom: '0.4rem' }}>
-                            <span className="span-state">País de emissão do passaporte<span style={{ color: 'red' }}>*</span></span>
+                            <span className="span-state">Cidade onde o passaporte foi emitido<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
                             <Select
                                 className="style-select-work"
                                 labelId="select-state"
                                 id="select-state"
+                                value={city}
+                                onChange={handleChangeSelectCity}
                             >
-                                {states.map((state) => (
-                                    <MenuItem key={state.id} value={state.nome}>
-                                        {state.nome}
+                                {cities.map((city, index) => (
+                                    <MenuItem key={index} value={city.name}>
+                                        {city.name}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -211,9 +244,9 @@ function Documents() {
                                     labelId="select-state"
                                     id="select-state"
                                 >
-                                    {states.map((state) => (
-                                        <MenuItem key={state.id} value={state.nome}>
-                                            {state.nome}
+                                    {Countries.map((state) => (
+                                        <MenuItem key={state.key} value={state.key}>
+                                            {state.value}
                                         </MenuItem>
                                     ))}
                                 </Select>

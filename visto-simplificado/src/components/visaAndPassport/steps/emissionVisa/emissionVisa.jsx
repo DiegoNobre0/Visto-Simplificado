@@ -6,27 +6,22 @@ import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import InputMask from 'react-input-mask';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import cityToConsulateId from '../../../../datas/city_to_consulate_id'
 
-function EmissionVisa() {
-    const getStates = async () => {
-        const response = await statesBrazilianService.getStates();
-        setStates(response);
-    }
-
-    const [states, setStates] = useState([]);
+function EmissionVisa() {  
     const [selectedState, setSelectedState] = useState("Sim");
-    const [radioRequester, setRadioRequester] = useState("");
+    const [selectedCity, setSelectedCity] = useState("");
 
     const handleChangeSelect = (event) => {
         setSelectedState(event.target.value);
     };
 
-    const handleChangeRequester = (event) => {
-        setRadioRequester(event.target.value);
+    const handleChangeSelectCity = (event) => {
+        setSelectedCity(event.target.value);
     };
 
     useEffect(() => {
-        getStates();
+       
     }, []);
 
     return (
@@ -101,12 +96,12 @@ function EmissionVisa() {
                                         className="input-style-work"
                                         labelId="select-state"
                                         id="select-state"
-                                        value={selectedState}
-                                        onChange={handleChangeSelect}
+                                        value={selectedCity}
+                                        onChange={handleChangeSelectCity}
                                     >
-                                        {states.map((state) => (
-                                            <MenuItem key={state.id} value={state.nome}>
-                                                {state.nome}
+                                        {cityToConsulateId.map((state) => (
+                                            <MenuItem key={state.key} value={state.key}>
+                                                {state.value}
                                             </MenuItem>
                                         ))}
                                     </Select>

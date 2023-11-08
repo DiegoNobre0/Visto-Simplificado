@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react"
 import './charity.css'
 import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
-import statesBrazilianService from "../../../../services/statesBrazilianService"
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 import {
     GetCountries,
     GetState,
     GetCity,
-    GetLanguages, //async functions
+    GetLanguages, 
   } from "react-country-state-city";
 
 
@@ -23,18 +22,6 @@ const MenuProps = {
     },
 };
 
-const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
-];
 
 function getStyles(name, personName, theme) {
     return {
