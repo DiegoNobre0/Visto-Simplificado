@@ -7,10 +7,8 @@ import statesBrazilianService from "../../services/statesBrazilianService";
 import Charity from "./steps/charity/charity";
 import Work from "./steps/work/work";
 import Formation from "./steps/formation/formation";
-import countryService from "./steps/countryService/countryService";
 import CountryService from "./steps/countryService/countryService";
 
-const steps = ['1','2','3','4'];
 
 function AdditionalInformation (props) {
     const [activeStep, setActiveStep] = useState(0);

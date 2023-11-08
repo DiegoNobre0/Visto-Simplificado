@@ -38,7 +38,7 @@ function Divorced() {
                         <span className="title-header">Informações Pessoais</span>
                     </div>
                     <div>
-                        <span className="title-header-1">Divorciado(a)</span>
+                        <span className="title-header-1">Ex-companheiro(a)</span>
                     </div>
                 </div>
                 <hr className="hr-color" />

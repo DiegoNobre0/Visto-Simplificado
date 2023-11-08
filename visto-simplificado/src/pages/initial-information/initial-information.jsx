@@ -3,19 +3,20 @@ import './initial-information.css'
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import statesBrazilianService from "../../services/statesBrazilianService";
 import { Link } from "react-router-dom";
-import ds160Cities from "../../datas/ds160_city"
+import ds160Cities from "../../datas/ds160_city";
+import { useData } from '../../dataContext/dataContext';
 
 
-function InitialInformation() {  
+function InitialInformation() { 
+    const { data, updateData } = useData(); 
 
-    const [ds160City, setDs160City] = useState('[]');
-    const [selectedState, setSelectedState] = useState("");
+    const [ds160City, setDs160City] = useState('');   
     const [radioRequester, setRadioRequester] = useState("Apenas para mim");
 
     const handleChangeSelect = (event) => {
-        setDs160City(event.target.value);
+        setDs160City(event.target.value);        
+        updateData({ds160_city: event.target.value})
     };
 
     const handleChangeRequester = (event) => {

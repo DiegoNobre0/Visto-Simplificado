@@ -15,9 +15,6 @@ import Married from './steps/maritalStatus/married';
 import Divorced from './steps/maritalStatus/divorced';
 import Widow from './steps/maritalStatus/widow';
 
-
-const steps = ['1','2','3','4','5','6','7','8','9','10','11'];
-
 function PersonalInformation (props) {
     const [activeStep, setActiveStep] = useState(0);
     const [skipped, setSkipped] = useState(new Set()); 
@@ -34,7 +31,7 @@ function PersonalInformation (props) {
         newSkipped = new Set(newSkipped.values());
         newSkipped.delete(activeStep);
       }
-      if(selectedStatus === "Solteiro" && activeStep === 0){
+      if(selectedStatus === "S" && activeStep === 0){
         setActiveStep((prevActiveStep) => prevActiveStep + 2);
       }
       else{
@@ -48,7 +45,7 @@ function PersonalInformation (props) {
     };
   
     const handleBack = () => {
-      if(selectedStatus === "Solteiro" && activeStep === 2){
+      if(selectedStatus === "S" && activeStep === 2){
         setActiveStep((prevActiveStep) => prevActiveStep - 2);
       }
       else{
@@ -66,7 +63,7 @@ function PersonalInformation (props) {
     const handleNextMarital = (selectedStatus) => {
        
         if (selectedStatus === 'S') {
-          setActiveStep((prevActiveStep) => prevActiveStep + 2);
+          // setActiveStep((prevActiveStep) => prevActiveStep + 2);
         } else if (selectedStatus === 'M') {
           setMaritalStatus(<Married key="married"/>)
         } else if (selectedStatus === 'P') {
