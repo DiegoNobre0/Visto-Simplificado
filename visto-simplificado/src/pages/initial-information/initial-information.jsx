@@ -5,6 +5,7 @@ import Select from '@mui/material/Select';
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { Link } from "react-router-dom";
 import ds160Cities from "../../datas/ds160_city";
+import cityToConsulateId from "../../datas/city_to_consulate_id";
 import { useData } from '../../dataContext/dataContext';
 
 
@@ -15,8 +16,18 @@ function InitialInformation() {
     const [radioRequester, setRadioRequester] = useState("Apenas para mim");
 
     const handleChangeSelect = (event) => {
-        setDs160City(event.target.value);        
-        updateData({ds160_city: event.target.value})
+        let selectCity = ds160Cities.find(city => city.key === event.target.value)
+        let selectedCityObject = cityToConsulateId.find(city => city.value === selectCity.value);
+    
+        if (selectedCityObject) {            
+            let selectedCityKey = selectedCityObject.key;
+            setDs160City(event.target.value);
+
+            updateData({
+                ds160_city: event.target.value,
+                consulate_id:  selectedCityKey
+            });
+        } 
     };
 
     const handleChangeRequester = (event) => {

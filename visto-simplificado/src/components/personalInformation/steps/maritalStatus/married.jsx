@@ -12,26 +12,21 @@ import citiesService from "../../../../services/citiesWorld";
 
 
 function Married() {
-    const [nationality, setNationality] = useState("");
-    const [countryBirth, setCountryBirth] = useState("")
-    const [gender, setGender] = useState("F");
-    const [city, setCity] = useState("");
+    const [companionFirstName, setCompanionFirstName] = useState("");
+    const [companionLastName, setCompanionLastName] = useState("");
+    const [companionBirthdate, setCompanionBirthdate] = useState(null);
+    const [companionNationality, setCompanionNationality] = useState("");
+    const [companionCountryBirth, setCompanionCountryBirth] = useState("");
+    const [companionGender, setCompanionGender] = useState("F");
+    const [companionAddress, setCompanionAddress] = useState("");
+    const [companionAddressComplement, setCompanionAddressComplement] = useState("");
+    const [companionZipCode, setCompanionZipCode] = useState("");
+    const [country, setCountry] = useState("");
     const [state, setState] = useState("");
-    const [country, setCountry] = useState("")
+    const [city, setCity] = useState("");    
     const [cities, setCities] = useState([]);
     const [states, setStates] = useState([]);
     const [countries, setCountries] = useState([])
-
-    const handleChangeSelectNationality = (event) => {
-        setNationality(event.target.value);
-    };
-    const handleChangeSelectCountryBirth = (event) => {
-        setCountryBirth(event.target.value);
-    };
-    const handleChangeSelectGender = (event) => {
-        setGender(event.target.value);
-    };
-
 
     const getCountries = async () => {
         let _countries = await countriesService.getCountries();
@@ -64,6 +59,52 @@ function Married() {
         setCity(event.target.value);
     };
 
+    const handleChangeCompanionFirstName = (event) => {
+        setCompanionFirstName(event.target.value);
+    };
+
+    const handleChangeCompanionLastName = (event) => {
+        setCompanionLastName(event.target.value);
+    };
+
+    const handleChangeCompanionBirthdate = (date) => {
+        setCompanionBirthdate(date);
+    };
+
+    const handleChangeSelectCompanionNationality = (event) => {
+        setCompanionNationality(event.target.value);
+    };
+
+    const handleChangeSelectCompanionCountryBirth = (event) => {
+        setCompanionCountryBirth(event.target.value);
+    };
+
+    const handleChangeSelectCompanionGender = (event) => {
+        setCompanionGender(event.target.value);
+    };
+
+    const handleChangeCompanionAddress = (event) => {
+        setCompanionAddress(event.target.value);
+    };
+
+    const handleChangeCompanionAddressComplement = (event) => {
+        setCompanionAddressComplement(event.target.value);
+    };
+
+    const handleChangeCompanionZipCode = (event) => {
+        setCompanionZipCode(event.target.value);
+    };
+
+    const handleChangeSelectNationality = (event) => {
+        setNationality(event.target.value);
+    };
+    // const handleChangeSelectCountryBirth = (event) => {
+    //     setCountryBirth(event.target.value);
+    // };
+    // const handleChangeSelectGender = (event) => {
+    //     setGender(event.target.value);
+    // };
+
 
     useEffect(() => {
         getCountries()
@@ -92,7 +133,7 @@ function Married() {
                             <span className="span-state">Nome do companheiro<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style-marital" placeholder="Escreva o seu primeiro nome" variant="outlined" />
+                            <TextField value={companionFirstName} onChange={handleChangeCompanionFirstName } id="outlined-basic" className="input-style-marital" placeholder="Escreva o seu primeiro nome" variant="outlined" />
                         </div>
                     </div>
                     <div>
@@ -100,7 +141,7 @@ function Married() {
                             <span className="span-state">Sobrenome do companheiro<span style={{ color: 'red' }}>*</span></span>
                         </div>
                         <div className="padding-bottom-1">
-                            <TextField id="outlined-basic" className="input-style-marital" placeholder="Escreva o seu sobrenome" variant="outlined" />
+                            <TextField value={companionLastName} onChange={handleChangeCompanionLastName} id="outlined-basic" className="input-style-marital" placeholder="Escreva o seu sobrenome" variant="outlined" />
                         </div>
                     </div>
                     <div>
@@ -109,7 +150,7 @@ function Married() {
                         </div>
                         <div className="padding-bottom-1">
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker format="DD/MM/YYYY" className="custom-date-picker-initial" />
+                                <DatePicker value={companionBirthdate} onChange={handleChangeCompanionBirthdate } format="DD/MM/YYYY" className="custom-date-picker-initial" />
                             </LocalizationProvider>
                         </div>
                     </div>
@@ -129,8 +170,8 @@ function Married() {
                                 className="style-select-marital"
                                 labelId="select-state"
                                 id="select-state"
-                                value={nationality}
-                                onChange={handleChangeSelectNationality}
+                                value={companionNationality}
+                                onChange={handleChangeSelectCompanionNationality }
                             >
                                 {Countries.map((state) => (
                                     <MenuItem key={state.key} value={state.key}>
@@ -149,8 +190,8 @@ function Married() {
                                 className="style-select-marital"
                                 labelId="select-state"
                                 id="select-state"
-                                value={countryBirth}
-                                onChange={handleChangeSelectCountryBirth}
+                                value={companionCountryBirth}
+                                onChange={handleChangeSelectCompanionCountryBirth }
                             >
                                 {Countries.map((state) => (
                                     <MenuItem key={state.key} value={state.key}>
@@ -169,15 +210,15 @@ function Married() {
                 <div className="padding-radio-marital">
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue="F"
+                        defaultValue="Sim"
                         name="radio-buttons-group"
                         className="subTitle-div-2"
                         row
                         value={gender}
                         onChange={handleChangeSelectGender}
                     >
-                        <FormControlLabel value="F" control={<Radio />} label="Feminino" />
-                        <FormControlLabel value="M" control={<Radio />} label="Masculino" />
+                        <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                        <FormControlLabel value="Não" control={<Radio />} label="Não" />
                     </RadioGroup>
                 </div>
             </div>
